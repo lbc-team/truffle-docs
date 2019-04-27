@@ -1,4 +1,4 @@
-# Configuration
+# 配置文件
 
 ## Location
 

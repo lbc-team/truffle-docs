@@ -1,4 +1,4 @@
-# Package Management via EthPM
+# 用 EthPM 进行包管理
 
 EthPM is the new [Package Registry](https://www.ethpm.com/) for Ethereum. It follows the [ERC190 spec](https://github.com/ethereum/EIPs/issues/190) for publishing and consuming smart contract packages, and has gained wide support from many diverse Ethereum development tools. To show our support, we've integrated the Ethereum Package Registry directly into Truffle.
 

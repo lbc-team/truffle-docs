@@ -1,4 +1,4 @@
-# Using the Build Pipeline
+# 使用 Pipeline 构建
 
 <p class="alert alert-warning">
 **Alert**: This command is deprecated. Please use third-party build tools like webpack or grunt, or see our [Truffle Boxes](https://truffleframework.com/boxes) for an example.

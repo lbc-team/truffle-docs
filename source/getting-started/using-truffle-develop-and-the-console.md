@@ -1,4 +1,4 @@
-# Using Truffle Develop and the Console
+# 使用控制台
 
 Sometimes it's nice to work with your contracts interactively for testing and debugging purposes, or for executing transactions by hand. Truffle provides you two easy ways to do this via an interactive console, with your contracts available and ready to use.
 

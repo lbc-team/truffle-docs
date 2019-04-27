@@ -1,4 +1,4 @@
-# Working With Quorum
+# 支持 Quorum 开发
 Truffle supports development with Quorum, a version of Ethereum that adds new features on top of what Ethereum already provides. Specifically, **Quorum adds the ability to create private blockchains between select participants, and more importantly adds transaction privacy on top of normal Ethereum transactions.**
 
 It is highly recommended you read our [tutorial on building a dapp on Quorum](/tutorials/building-dapps-for-quorum-private-enterprise-blockchains) before using Truffle with Quorum.

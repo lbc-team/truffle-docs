@@ -1,4 +1,4 @@
-# Choosing an Ethereum client
+# 选择以太坊客户端
 
 There are many Ethereum clients to choose from. We recommend different clients depending on whether you are developing or deploying.
 

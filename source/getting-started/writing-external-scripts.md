@@ -1,4 +1,4 @@
-# Writing External Scripts
+# 编写外部脚本
 
 Often you may want to run external scripts that interact with your contracts. Truffle provides an easy way to do this, bootstrapping your contracts based on your desired network and connecting to your Ethereum client automatically per your [project configuration](/docs/advanced/configuration).
 
@@ -23,7 +23,7 @@ module.exports = function(callback) {
 You can do anything you'd like within this script, so long as the callback is called when the script finishes. The callback accepts an error as its first and only parameter. If an error is provided, execution will halt and the process will return a non-zero exit code.
 
 
-# Third-party plugin commands
+# 第三方插件命令
 
 <p class="alert alert-warning">
 **Note**: This feature is new and still in a barebones state. Please let us

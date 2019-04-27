@@ -1,85 +1,83 @@
-# Truffle Quickstart
+# 快速入门 Truffle
 
-This page will take you through the basics of creating a Truffle project and deploying a smart contract to a blockchain.
+本文主要入门介绍如何创建 Truffle 项目以及将智能合约部署到区块链。
 
-```important::
-Before you begin, make sure that you read our [Ethereum Overview](https://truffleframework.com/tutorials/ethereum-overview) page.
+ ```note::
+  在开始之前，最好对以太坊有基础的了解，推荐阅读 `以太坊是什么 - 以太坊开发入门指南 <https://learnblockchain.cn/2017/11/20/whatiseth/>`_ 
+  或阅读 `以太坊概述（英文） <https://truffleframework.com/tutorials/ethereum-overview>`_ 。
+ ```
+
+```eval_rst
+.. _creating-a-project:
 ```
-
-## Table of Contents
-
-1. [Creating a project](#creating-a-project)
-1. [Exploring the project](#exploring-the-project)
-1. [Testing](#testing)
-1. [Compiling](#compiling)
-1. [Migrating with Truffle Develop](#migrating-with-truffle-develop)
-1. [Alternative: Migrating with Ganache](#alternative-migrating-with-ganache)
-1. [Interacting with the contract](#interacting-with-the-contract)
+## 创建项目工程
 
 
-## Creating a project
+Truffle 大多数命令都是在 Truffle 项目目录下运行的。 所以第一步是创建一个 Truffle 项目。 可以创建一个空项目模板，不过对于刚接触Truffle的同学，推荐使用[Truffle Boxes](https://truffleframework.com/boxes)，它提供了示例应用代码和项目模板。 我们将使用[MetaCoin box](https://truffleframework.com/boxes/metacoin)作为案例，它创建一个可以在帐户之间转移的Token（代币）。
 
-To use most Truffle commands, you need to run them against an existing Truffle project. So the first step is to create a Truffle project.
-
-You can create a bare project template, but for those just getting started, you can use [Truffle Boxes](https://truffleframework.com/boxes), which are example applications and project templates. We'll use the [MetaCoin box](https://truffleframework.com/boxes/metacoin), which creates a token that can be transferred between accounts:
-
-1. Create a new directory for your Truffle project:
+1. 为 Truffle 项目创建新目录：
 
    ```shell
    mkdir MetaCoin
    cd MetaCoin
    ```
 
-1. Download ("unbox") the MetaCoin box:
+1. 下载 ("unbox") MetaCoin box:
 
    ```shell
    truffle unbox metacoin
    ```
 
-   <p class="alert alert-info">
-   <strong>Note</strong>: You can use the `truffle unbox <box-name>` command to download any of the other Truffle Boxes.
-   </p>
+ ```note::
+  也可以使用 `truffle unbox <box-name>` 命令下载其他的 Box
+ ```
 
-   <p class="alert alert-info">
-   <strong>Note</strong>: To create a bare Truffle project with no smart contracts included, use `truffle init`.
-   </p>
+ ```note::
+   如果要创建没有合约的空工程，可以使用 `truffle init`.
+ ```
 
-Once this operation is completed, you'll now have a project structure with the following items:
+ 在操作完成之后，就有这样的一个项目结构：
 
-* `contracts/`: Directory for [Solidity contracts](getting-started/interacting-with-your-contracts.md)
-* `migrations/`: Directory for [scriptable deployment files](getting-started/running-migrations#migration-files)
-* `test/`: Directory for test files for [testing your application and contracts](testing/testing-your-contracts)
-* `truffle.js`: Truffle [configuration file](reference/configuration)
+* `contracts/`:  [Solidity合约目录](getting-started/interacting-with-your-contracts.md)
+* `migrations/`: [部署脚本文件](getting-started/running-migrations#migration-files)目录
+* `test/`:    测试脚本目录，参考 [如何测试应用？](testing/testing-your-contracts)
+* `truffle.js`: Truffle [配置文件](reference/configuration)
 
-## Exploring the project
+```eval_rst
+.. _Exploring the project:
+```
+## 项目结构
 
-<p class="alert alert-info">
-<strong>Note</strong>: This page is just a quickstart, so we're not going to go into much detail here. Please see the rest of the Truffle documentation to learn more.
-</p>
+ ```note::
+  这仅仅是一个入门。后面的文章我们可以学习到更多。
+ ```
 
-1. Open the `contracts/MetaCoin.sol` file in a text editor. This is a smart contract (written in Solidity) that creates a MetaCoin token. Note that this also references another Solidity file `contracts/ConvertLib.sol` in the same directory.
+1. `contracts/MetaCoin.sol`： 这是一个用 [Solidity](https://learnblockchain.cn/docs/solidity/) 编写的 MetaCoin 代币 智能合约。注意他还引用了目录下的另外一个合约文件 `contracts/ConvertLib.sol` 。
 
-1. Open the `contracts/Migrations.sol` file. This is a separate Solidity file that manages and updates [the status of your deployed smart contract](getting-started/running-migrations). This file comes with every Truffle project, and is usually not edited. 
+1. `contracts/Migrations.sol`： 这是一个单独的 Solidity 文件，用来[管理和升级智能合约](getting-started/running-migrations). 每一个工程都有这样的一个文件，并且通常不需要编辑它。
 
-1. Open the `migrations/1_initial_migration.js` file. This file is the migration (deployment) script for the `Migrations` contract found in the `Migrations.sol` file.
+1. `migrations/1_initial_migration.js`： 这是一个部署脚本，用来部署 `Migrations` 合约，对应 `Migrations.sol` 文件。
 
-1. Open the `migrations/2_deploy_contracts.js` file. This file is the migration script for the `MetaCoin` contract. (Migration scripts are run in order, so the file beginning with `2` will be run after the file beginning with `1`.)
+1. `migrations/2_deploy_contracts.js`： 这是一个部署脚本，用来部署 `MetaCoin` 合约. (部署脚本的运行是有顺序的，以2开头的脚本通常在以1开头的脚本之后运行)
 
-1. Open the `test/TestMetacoin.sol` file. This is a [test file written in Solidity](testing/writing-tests-in-solidity) which ensures that your contract is working as expected.
+1. `test/TestMetacoin.sol`： 这是一个[用Solidity编写的测试用例](testing/writing-tests-in-solidity)文件，用来检查合约是否像预期一样工作。
 
-1. Open the `test/metacoin.js` file. This is a [test file written in JavaScript](testing/writing-tests-in-javascript) which performs a similar function to the Solidity test above.
+1. `test/metacoin.js` ： 这是一个用[JavaScript编写的测试用例脚本](testing/writing-tests-in-javascript)，用途和上面一样。
 
-1. Open the `truffle.js` file. This is the Truffle [configuration file](reference/configuration), for setting network information and other project-related settings. The file is blank, but this is okay, as we'll be using a Truffle command that has some defaults built-in.
+1. `truffle.js` 或 `truffle-config.js`： Truffle [配置文件](reference/configuration), 用来设置网络信息，和其他项目相关的设置。当我们使用内建的默认的Truffle命令时，这个文件留空也是可以的。
 
-## Testing
+```eval_rst
+.. _Testing:
+```
+## 使用测试
 
-1. On a terminal, run the Solidity test:
+1. 打开控制台终端，运行 Solidity 测试用例:
 
    ```shell
    truffle test ./test/TestMetacoin.sol
    ```
 
-   You will see the following output
+   我们可以看到下面的输出：
 
     ```
      TestMetacoin
@@ -89,13 +87,13 @@ Once this operation is completed, you'll now have a project structure with the f
      2 passing (794ms)
    ```
 
-   <p class="alert alert-info">
-   <strong>Note</strong>: If you're on Windows and encountering problems running this command, please see the documentation on [resolving naming conflicts on Windows](https://truffleframework.comreference/configuration#resolving-naming-conflicts-on-windows).
-   </p>
+```note::
+ 如果在windows平台运行，这个命令遇到问题，可以参考这个文档 `解决Windows命名冲突 <reference/configuration.html#resolving-naming-conflicts-on-windows>`_ 。
+```
 
-   These tree tests were run against the contract, with descriptions displayed on what the tests are supposed to do.
+  运行测试用例的时候。期望的行为，会输出在控制台
 
-1. Run the JavaScript test:
+1. 运行 JavaScript 测试用例
 
    ```shell
    truffle test ./test/metacoin.js
@@ -112,15 +110,19 @@ Once this operation is completed, you'll now have a project structure with the f
      3 passing (255ms)
    ```
 
-## Compiling
+```eval_rst
+.. _Compiling:
+```
 
-1. Compile the smart contracts:
+## 编译合约
+
+1. 编译智能合约：
 
    ```shell
    truffle compile
    ```
 
-   You will see the following output:
+   我们可以看到下面的输出:
 
    ```
    Compiling .\contracts\ConvertLib.sol...
@@ -130,23 +132,29 @@ Once this operation is completed, you'll now have a project structure with the f
    Writing artifacts to .\build\contracts
    ```
 
-## Migrating with Truffle Develop
+```eval_rst
+.. _Migrating with Truffle Develop:
+```
 
-<p class="alert alert-info">
-<strong>Note</strong>: To use [Ganache](https://truffleframework.com/ganache), please skip to the next section.
-</p>
+## 使用 Truffle Develop 部署合约
 
-To deploy our smart contracts, we're going to need to connect to a blockchain. Truffle has a built-in personal blockchain that can be used for testing. This blockchain is local to your system and does not interact with the main Ethereum network.
 
-You can create this blockchain and interact with it using [Truffle Develop](getting-started/using-truffle-develop-and-the-console#truffle-develop).
+ ``` note::
+  如果使用 `Ganache <https://truffleframework.com/ganache>`_ , 可以直接跳到下一部分。
+ ```
 
-1. Run Truffle Develop:
+为了部署我们的合约，我们需要连接到区块链网络。Truffle 提供了一个内置的个人模拟区块链，它可以帮助我们用来测试。注意，这个区块链是内地在我们本地的系统里面，他不和以太坊的组网进行连接。
+
+我们可以使用[Truffle Develop](getting-started/using-truffle-develop-and-the-console#truffle-develop)来创建区块链，并与之交互。
+
+
+1. 运行 Truffle Develop:
 
    ```shell
    truffle develop
    ```
 
-   You will see the following information:
+   我们可以看到下面的信息：
 
    ```
    Truffle Develop started at http://127.0.0.1:9545/
@@ -175,7 +183,7 @@ You can create this blockchain and interact with it using [Truffle Develop](gett
    (8) 0f62d96d6675f32685bbdb8ac13cda7c23436f63efbb9d07700d8669ff12b7c4
    (9) 8d5366123cb560bb606379f90a0bfd4769eecc0557f1b362dcae9012b548b1e5
 
-   Mnemonic: candy maple cake sugar pudding cream honey rich smooth crumble sweet treat
+   Mnemonic: candy maple cake sugar pudding cream honey tiny smooth crumble sweet treat
 
    ⚠️  Important ⚠️  : This mnemonic was created for you by Truffle. It is not secure.
    Ensure you do not use it on production blockchains, or else you risk losing funds.   
@@ -183,15 +191,15 @@ You can create this blockchain and interact with it using [Truffle Develop](gett
    truffle(development)>
    ```
 
-   This shows ten accounts (and their private keys) that can be used when interacting with the blockchain.
+   这也显示了10个账号，和他们对你的私钥，这些账号可以用来和区块链进行交互。
 
-1. On the Truffle Develop prompt, Truffle commands can be run by omitting the `truffle` prefix. For example, to run `truffle compile` on the prompt, type `compile`. The command to deploy your compiled contracts to the blockchain is `truffle migrate`, so at the prompt, type:
+1. 在 truffle(develop)> 提示符（因为提供了一个交互式控制台）下， Truffle 的命令可以不带前缀 `truffle` 执行。比如，可以直接输入`compile` 来执行`truffle compile`，以及直接输入 `migrate` 来部署编译的智能合约到区块链（相当于`truffle migrate`）：
 
    ```shell
    migrate
    ```
 
-   You will see the following output:
+  我们可以看到下面的信息：
 
    ```
    Starting migrations...
@@ -262,26 +270,32 @@ You can create this blockchain and interact with it using [Truffle Develop](gett
    > Final cost:          0.01466268 ETH
    ```
 
-   This shows the transaction IDs and addresses of your deployed contracts. It also includes a cost summary and real-time status updates.
+   这里显示了交易的ID号，部署的合约地址。以及交易的花费和一些相关的状态。
 
-   <p class="alert alert-info">
-     <strong>Note</strong>: Your transaction hashes, contract addresses, and accounts will be different from the above.
-   </p>
-
-<p class="alert alert-info">
-<strong>Note</strong>: To see how to interact with the contract, please skip to the next section.
-</p>
+ ``` note::
+  当然我们自己部署的时候，交给哈希和一个地址和我们的账号，都是和上面不一样的。
+ ```
 
 
-## Alternative: Migrating with Ganache
 
-While Truffle Develop is an all-in-one personal blockchain and console, you can also use [Ganache](https://truffleframework.com/ganache), a desktop application, to launch your personal blockchain. Ganache can be a more easy-to-understand tool for those new to Ethereum and the blockchain, as it displays much more information up-front.
 
-The only extra step, aside from running Ganache, is that it requires editing the Truffle configuration file to point to the Ganache instance.
+```eval_rst
+.. _Alternative-Migrating-with-Ganache:
+```
 
-1. Download and install [Ganache](https://truffleframework.com/ganache).
+## 可选: 通过 Ganache 部署
 
-1. Open `truffle.js` in a text editor. Replace the content with the following:
+ ``` note::
+  直接了解如何与合约进行交互，可以直接跳到下一个部分。
+ ```
+
+除了用上面的 Truffle Develop，还可以选择使用 [Ganache](https://truffleframework.com/ganache), 这是一个桌面应用，他同样会创建一个个人模拟的区块链。 对于刚接触以太坊的同学来说，`Ganache` 会更容易理解，因为他把所有的信息，都输在前端的界面。
+
+不像 Truffle Develop 把链和控制台集成在一起，使用 Ganache 需要编辑配置文件，以便 Truffle 能链接 Ganache 实例。
+
+1. 下载安装 [Ganache](https://truffleframework.com/ganache).
+
+1. 编辑器打开 `truffle.js` ，使用下面的内容：
 
    ```javascript
    module.exports = {
@@ -295,23 +309,21 @@ The only extra step, aside from running Ganache, is that it requires editing the
    };
    ```
 
-   This will allow a connection using Ganache's default connection parameters.
+   这是使用默认的连接参数去连接  Ganache（如果IP和端口有变化，需要同步修改上面的内容）。
 
-1. Save and close that file.
+1. 保存关闭配置文件。
 
-1. Launch Ganache.
+1. 启动Ganache
 
-   ![Ganache](https://truffleframework.com/img/docs/ganache/quickstart/accounts.png)
+   ![Ganache 界面](https://truffleframework.com/img/docs/ganache/quickstart/accounts.png)
 
-   *Ganache*
-
-1. On the terminal, migrate the contract to the blockchain created by Ganache:
+1. 打开控制台，执行部署：
 
    ```shell
    truffle migrate
    ```
 
-   You will see the following output
+   我们可以看到类似下面的输出：
 
    ```
    Starting migrations...
@@ -347,7 +359,7 @@ The only extra step, aside from running Ganache, is that it requires editing the
       ----------------------
       > transaction hash:    0x97e8168f1c05fc40dd8ffc529b9a2bf45cc7c55b07b6b9a5a22173235ee247b6
       > Blocks: 0            Seconds: 0
-      > contract address:    0xfb39FeaeF3ac3fd46e2123768e559BCe6bD638d6
+      > contract address:    0xfb39FeaeF3ac3fd4TinY66668exionge6bD638d6
       > account:             0x627306090abab3a6e1400e9345bc60c78a8bef57
       > balance:             99.9914458
       > gas used:            108240
@@ -361,9 +373,9 @@ The only extra step, aside from running Ganache, is that it requires editing the
 
       Deploying 'MetaCoin'
       --------------------
-      > transaction hash:    0xee4994097c10e7314cc83adf899d67f51f22e08b920e95b6d3f75c5eb498bde4
+      > transaction hash:    0xee6574803810e7314cc83adf899d67f51f22e08b920e657480385c5eb498bde4
       > Blocks: 0            Seconds: 0
-      > contract address:    0x6891Ac4E2EF3dA9bc88C96fEDbC9eA4d6D88F768
+      > contract address:    0x6891ATinyEF3dA9bc88C96fXlbC9eA4d6D88F768
       > account:             0x627306090abab3a6e1400e9345bc60c78a8bef57
       > balance:             99.98449716
       > gas used:            347432
@@ -382,77 +394,87 @@ The only extra step, aside from running Ganache, is that it requires editing the
    > Final cost:          0.01466268 ETH
    ```
 
-   This shows the transaction IDs and addresses of your deployed contracts. It also includes a cost summary and real-time status updates.
+   这里同样显示了交易的ID号（hash），部署的合约地址。以及交易的花费和一些相关实时状态。
 
-   <p class="alert alert-info">
-     <strong>Note</strong>: Your transaction IDs and contract addresses will be different from the above.
-   </p>
+ ``` note::
+  当然我们自己部署的时候，交给哈希和一个地址和我们的账号，都是和上面不一样的。
+ ```
 
-1. In Ganache, click the "Transactions" button to see that the transactions have been processed.
+1. 在 Ganache 里，点击 "Transactions" 可以看到交易详情。
    
-1. To interact with the contract, you can use the Truffle console. The Truffle console is similar to Truffle Develop, except it connects to an existing blockchain (in this case, the one generated by Ganache).
+1. 为了和合约进行交互，我们可以使用 Truffle 的控制台：`truffle console`， Truffle console 和 Truffle Develop 类似，仅仅是他们连接的链不一样而已，这里是连接 Ganache 。
 
    ```shell
    truffle console
    ```
 
-   You will see the following prompt:
+   可以看到下面的提示:
 
    ```
    truffle(development)>
    ```
 
-## Interacting with the contract
+``` note::
+  控制台提示符：truffle(development)> 括号里，指当前连接的网络。
+ ```
 
-Interact with the contract using the console in the following ways:
+```eval_rst
+.. _Interacting with the contract:
+```
+## 合约交互
 
-<p class="alert alert-info">
-<strong>Note</strong>: We're using `web3.eth.getAccounts()` in these examples, which returns a promise which resolves to an array of all the accounts generated by the mnemonic. So, given the addresses generated by our mnemonic above, specifying `(await web3.eth.getAccounts())[0]` is equivalent to the address `0x627306090abab3a6e1400e9345bc60c78a8bef57`.
-</p>
+可以使用控制台 console 和合约进行交互：
 
-As of Truffle v5, the console supports async/await functions, enabling much simpler interactions with the contract.
+``` note::
+ 我们在例子中使用 `web3.eth.getAccounts()` , 它返回一个 promise 从中可以获取到由助记词生成的所有账号。  如果指定 `(await web3.eth.getAccounts())[0]` 会返回 `0x627306090abab3a6e1400e9345bc60c78a8bef57`.
+```
 
-* Begin by establishing both the deployed MetaCoin contract instance and the accounts created by either Truffle's built-in blockchain or Ganache:
+在 Truffle v5, 控制台支持 async/await 方法（同步方式）, 这样让跟合约交互更简单了，方法如下：
+
+* 从获取部署合约实例 及获取账号列表 开始：
 
   ```shell
   truffle(development)> let instance = await MetaCoin.deployed()
   truffle(development)> let accounts = await web3.eth.getAccounts()
   ```
 
-* Check the metacoin balance of the account that deployed the contract:
+* 检查账号余额：
 
   ```shell
   truffle(development)> let balance = await instance.getBalance(accounts[0])
   truffle(development)> balance.toNumber()
   ```
 
-* See how much ether that balance is worth (and note that the contract defines a metacoin to be worth 2 ether):
+* 查看以太价值（其实就是调用了一个合约方法：合约方法里定义了一个metacoin 价值 2 ether)：
 
   ```shell
   truffle(development)> let ether = await instance.getBalanceInEth(accounts[0])
   truffle(development)> ether.toNumber()
   ```
 
-* Transfer some metacoin from one account to another:
+* 发送一些 metacoin 到其他的账号 :
 
   ```shell
   truffle(development)> instance.sendCoin(accounts[1], 500)
   ```
 
-* Check the balance of the account that *received* the metacoin:
+* 检查刚刚收款人的余额：
 
   ```shell
   truffle(development)> let received = await instance.getBalance(accounts[1])
   truffle(development)> received.toNumber()
   ```
 
-* Check the balance of the account that *sent* the metacoin:
+* 检查刚刚发送方的余额：
 
   ```shell
   truffle(development)> let newBalance = await instance.getBalance(accounts[0])
   truffle(development)> newBalance.toNumber()
   ```
 
-## Continue learning
+```eval_rst
+.. _Continue learning:
+```
+## 进一步学习
 
-This quickstart showed you the basics of the Truffle project lifecycle, but there is much more to learn. Please continue on with the rest of our [documentation](https://truffleframework.com/docs) and especially our [tutorials](https://truffleframework.com/tutorials) to learn more.
+本篇快速入门仅仅是了解 Truffle 工程的一个生命周期，还有很多内容需要学习，请学习文档其余部分。

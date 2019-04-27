@@ -1,4 +1,4 @@
-# Contact the developers
+# 联系开发者
 
 ## Gitter
 

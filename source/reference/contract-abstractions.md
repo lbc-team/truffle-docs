@@ -1,4 +1,4 @@
-# Contract Abstractions
+# 合约抽象封装
 
 Truffle provides contract abstractions for interacting with your contracts.  Skip ahead to the [api section](../reference/contract-abstractions#api) for a list of contract methods.
 
