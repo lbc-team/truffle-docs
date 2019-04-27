@@ -28,7 +28,7 @@ truffle build
 Requires the `build` key to be present in the configuration. See the [Building your application](/docs/getting_started/build) and [Build processes](/docs/advanced/build_processes) sections for more details.
 
 <p class="alert alert-warning">
-**Alert**: This command is deprecated. Please use third-party build tools like webpack or grunt, or see our [Truffle Boxes](/boxes) for an example.
+**Alert**: This command is deprecated. Please use third-party build tools like webpack or grunt, or see our [Truffle Boxes](https://truffleframework.com/boxes) for an example.
 </p>
 
 
@@ -300,7 +300,7 @@ Options:
 * `--network <name>`: Specify the network to use, using artifacts specific to that network. Network name must exist in the configuration.
 
 <p class="alert alert-warning">
-**Alert**: This command is deprecated. Please use third-party development servers like [webpack-dev-server](https://github.com/webpack/webpack-dev-server) instead. See our [Webpack Truffle Box](/boxes/webpack) for an example.
+**Alert**: This command is deprecated. Please use third-party development servers like [webpack-dev-server](https://github.com/webpack/webpack-dev-server) instead. See our [Webpack Truffle Box](https://truffleframework.com/boxes/webpack) for an example.
 </p>
 
 
@@ -331,7 +331,7 @@ Download a Truffle Box, a pre-built Truffle project.
 truffle unbox <box_name>
 ```
 
-Downloads a [Truffle Box](/boxes) to the current working directory. See the [list of available boxes](/boxes).
+Downloads a [Truffle Box](https://truffleframework.com/boxes) to the current working directory. See the [list of available boxes](https://truffleframework.com/boxes).
 
 You can also design and create your own boxes!  See the section on [Truffle boxes](docs/truffle/getting-started/truffle-boxes) for more information.
 

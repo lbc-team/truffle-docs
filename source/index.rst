@@ -8,7 +8,8 @@ Truffle 框架文档翻译说明 及 概述
 Truffle 概述
 ==================
 
-<img style="max-width: 160px;" src="https://truffleframework.com/img/truffle-logo-dark.svg" alt="Truffle Logo" />
+![Truffle Logo](https://truffleframework.com/img/truffle-logo-dark.svg)
+<img style="max-width: 160px;" src="" alt="" />
 
 Truffle 是一个在以太坊虚拟机（EVM）上进行开发的世界级开发环境、测试框架。旨在使开发人员更轻松。 使用 Truffle 开发有一下优点：
 
@@ -29,7 +30,7 @@ Truffle 是一个在以太坊虚拟机（EVM）上进行开发的世界级开发
 
 .. toctree::
    :maxdepth: 2
-   :caption: 开始使用
+   :caption: 快速开始使用
 
    quickstart/installation.md
    quickstart/creating-a-project.md 
@@ -46,7 +47,7 @@ Truffle 是一个在以太坊虚拟机（EVM）上进行开发的世界级开发
    
 .. toctree::
    :maxdepth: 2
-   :caption: 测试
+   :caption: 编写测试
 
    testing/testing-your-contracts.md
    testing/writing-tests-in-javascript.md
@@ -54,7 +55,7 @@ Truffle 是一个在以太坊虚拟机（EVM）上进行开发的世界级开发
 
 .. toctree::
    :maxdepth: 2
-   :caption: 高级
+   :caption: 高级用法
 
    advanced/networks-and-app-deployment.md
    advanced/build-processes.md

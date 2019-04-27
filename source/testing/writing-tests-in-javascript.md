@@ -31,7 +31,7 @@ A `web3` instance is available in each test file, configured to the correct prov
 
 ### Using `.then`
 
-Here's an example test provided in the [MetaCoin Truffle Box](/boxes/metacoin). Note the use of the `contract()` function, the `accounts` array for specifying available Ethereum accounts, and our use of `artifacts.require()` for interacting directly with our contracts.
+Here's an example test provided in the [MetaCoin Truffle Box](https://truffleframework.com/boxes/metacoin). Note the use of the `contract()` function, the `accounts` array for specifying available Ethereum accounts, and our use of `artifacts.require()` for interacting directly with our contracts.
 
 File: `./test/metacoin.js`
 

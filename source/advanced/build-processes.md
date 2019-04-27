@@ -1,7 +1,7 @@
 # Build Processes
 
 <p class="alert alert-warning">
-**Alert**: The `build` command and this approach is being deprecated. Please use third-party build tools like webpack or grunt, or see our [Truffle Boxes](/boxes) for an example.
+**Alert**: The `build` command and this approach is being deprecated. Please use third-party build tools like webpack or grunt, or see our [Truffle Boxes](https://truffleframework.com/boxes) for an example.
 </p>
 
 In order to provide tight integration with Truffle for those that desire it, Truffle allows you to specify a custom build pipeline meant to bootstrap and configure your application. Truffle provides three methods of integration, described below.

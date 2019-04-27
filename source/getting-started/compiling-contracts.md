@@ -4,7 +4,7 @@
 
 All of your contracts are located in your project's `contracts/` directory. As contracts are written in [Solidity](https://solidity.readthedocs.io/en/develop/), all files containing contracts will have a file extension of `.sol`. Associated Solidity [libraries](http://solidity.readthedocs.org/en/latest/contracts.html#libraries) will also have a `.sol` extension.
 
-With a bare Truffle [project](/docs/truffle/quickstart) (created through `truffle init`), you're given a single `Migrations.sol` file that helps in the deployment process. If you're using a [Truffle Box](/boxes), you will have multiple files here.
+With a bare Truffle [project](/docs/truffle/quickstart) (created through `truffle init`), you're given a single `Migrations.sol` file that helps in the deployment process. If you're using a [Truffle Box](https://truffleframework.com/boxes), you will have multiple files here.
 
 ## Command
 

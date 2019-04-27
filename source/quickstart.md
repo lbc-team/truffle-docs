@@ -2,9 +2,9 @@
 
 This page will take you through the basics of creating a Truffle project and deploying a smart contract to a blockchain.
 
-<p class="alert alert-info">
-<strong>Note</strong>: Before you begin, make sure that you read our [Ethereum Overview](/tutorials/ethereum-overview) page.
-</p>
+```important::
+Before you begin, make sure that you read our [Ethereum Overview](https://truffleframework.com/tutorials/ethereum-overview) page.
+```
 
 ## Table of Contents
 
@@ -46,10 +46,10 @@ You can create a bare project template, but for those just getting started, you 
 
 Once this operation is completed, you'll now have a project structure with the following items:
 
-* `contracts/`: Directory for [Solidity contracts](/docs/truffle/getting-started/interacting-with-your-contracts)
-* `migrations/`: Directory for [scriptable deployment files](/docs/truffle/getting-started/running-migrations#migration-files)
-* `test/`: Directory for test files for [testing your application and contracts](/docs/truffle/testing/testing-your-contracts)
-* `truffle.js`: Truffle [configuration file](/docs/truffle/reference/configuration)
+* `contracts/`: Directory for [Solidity contracts](getting-started/interacting-with-your-contracts.md)
+* `migrations/`: Directory for [scriptable deployment files](getting-started/running-migrations#migration-files)
+* `test/`: Directory for test files for [testing your application and contracts](testing/testing-your-contracts)
+* `truffle.js`: Truffle [configuration file](reference/configuration)
 
 ## Exploring the project
 
@@ -59,17 +59,17 @@ Once this operation is completed, you'll now have a project structure with the f
 
 1. Open the `contracts/MetaCoin.sol` file in a text editor. This is a smart contract (written in Solidity) that creates a MetaCoin token. Note that this also references another Solidity file `contracts/ConvertLib.sol` in the same directory.
 
-1. Open the `contracts/Migrations.sol` file. This is a separate Solidity file that manages and updates [the status of your deployed smart contract](/docs/truffle/getting-started/running-migrations). This file comes with every Truffle project, and is usually not edited. 
+1. Open the `contracts/Migrations.sol` file. This is a separate Solidity file that manages and updates [the status of your deployed smart contract](getting-started/running-migrations). This file comes with every Truffle project, and is usually not edited. 
 
 1. Open the `migrations/1_initial_migration.js` file. This file is the migration (deployment) script for the `Migrations` contract found in the `Migrations.sol` file.
 
 1. Open the `migrations/2_deploy_contracts.js` file. This file is the migration script for the `MetaCoin` contract. (Migration scripts are run in order, so the file beginning with `2` will be run after the file beginning with `1`.)
 
-1. Open the `test/TestMetacoin.sol` file. This is a [test file written in Solidity](/docs/truffle/testing/writing-tests-in-solidity) which ensures that your contract is working as expected.
+1. Open the `test/TestMetacoin.sol` file. This is a [test file written in Solidity](testing/writing-tests-in-solidity) which ensures that your contract is working as expected.
 
-1. Open the `test/metacoin.js` file. This is a [test file written in JavaScript](/docs/truffle/testing/writing-tests-in-javascript) which performs a similar function to the Solidity test above.
+1. Open the `test/metacoin.js` file. This is a [test file written in JavaScript](testing/writing-tests-in-javascript) which performs a similar function to the Solidity test above.
 
-1. Open the `truffle.js` file. This is the Truffle [configuration file](/docs/truffle/reference/configuration), for setting network information and other project-related settings. The file is blank, but this is okay, as we'll be using a Truffle command that has some defaults built-in.
+1. Open the `truffle.js` file. This is the Truffle [configuration file](reference/configuration), for setting network information and other project-related settings. The file is blank, but this is okay, as we'll be using a Truffle command that has some defaults built-in.
 
 ## Testing
 
@@ -90,7 +90,7 @@ Once this operation is completed, you'll now have a project structure with the f
    ```
 
    <p class="alert alert-info">
-   <strong>Note</strong>: If you're on Windows and encountering problems running this command, please see the documentation on [resolving naming conflicts on Windows](https://truffleframework.com/docs/truffle/reference/configuration#resolving-naming-conflicts-on-windows).
+   <strong>Note</strong>: If you're on Windows and encountering problems running this command, please see the documentation on [resolving naming conflicts on Windows](https://truffleframework.comreference/configuration#resolving-naming-conflicts-on-windows).
    </p>
 
    These tree tests were run against the contract, with descriptions displayed on what the tests are supposed to do.
@@ -138,7 +138,7 @@ Once this operation is completed, you'll now have a project structure with the f
 
 To deploy our smart contracts, we're going to need to connect to a blockchain. Truffle has a built-in personal blockchain that can be used for testing. This blockchain is local to your system and does not interact with the main Ethereum network.
 
-You can create this blockchain and interact with it using [Truffle Develop](/docs/truffle/getting-started/using-truffle-develop-and-the-console#truffle-develop).
+You can create this blockchain and interact with it using [Truffle Develop](getting-started/using-truffle-develop-and-the-console#truffle-develop).
 
 1. Run Truffle Develop:
 
