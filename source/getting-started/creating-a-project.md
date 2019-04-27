@@ -1,37 +1,39 @@
-# 创建 Truffle 项目
+# 创建 Truffle 项目工程
 
-To use most Truffle commands, you need to run them against an existing Truffle project. So the first step is to create a Truffle project.
+Truffle 大多数命令都是在 Truffle 项目目录下运行的。 所以第一步是创建一个 Truffle 项目。 可以创建一个空项目模板，不过对于刚接触Truffle的同学，推荐使用[Truffle Boxes](https://truffleframework.com/boxes)，它提供了示例应用代码和项目模板。 我们将使用[MetaCoin box](https://truffleframework.com/boxes/metacoin)作为案例，它创建一个可以在帐户之间转移的Token（代币）。
 
-You can create a bare project template, but for those just getting started, you can use [Truffle Boxes](https://truffleframework.com/boxes), which are example applications and project templates. We'll use the [MetaCoin box](https://truffleframework.com/boxes/metacoin), which creates a token that can be transferred between accounts:
-
-1. Create a new directory for your Truffle project:
+1. 为 Truffle 项目创建新目录：
 
    ```shell
    mkdir MetaCoin
    cd MetaCoin
    ```
 
-1. Download ("unbox") the MetaCoin box:
+1. 下载 ("unbox") MetaCoin box:
 
    ```shell
    truffle unbox metacoin
    ```
 
-   <p class="alert alert-info">
-   <strong>Note</strong>: You can use the `truffle unbox <box-name>` command to download any of the other Truffle Boxes.
-   </p>
 
-   <p class="alert alert-info">
-   <strong>Note</strong>: To create a bare Truffle project with no smart contracts included, use `truffle init`.
-   </p>
+ ```note::
+  也可以使用 `truffle unbox <box-name>` 命令下载其他的 Box
+ ```
 
-   <p class="alert alert-info">
-   <strong>Note</strong>: You can use an optional `--force` to initialize the project in the current directory regardless of its state (e.g. even if it contains other files or directories). This applies to both the `init` and `unbox` commands. Be careful, this will potentially overwrite files that exist in the directory.
-   </p>
+ ```note::
+   如果要创建没有合约的空工程，可以使用 `truffle init`.
+ ```
 
-Once this operation is completed, you'll now have a project structure with the following items:
 
-* `contracts/`: Directory for [Solidity contracts](../getting-started/interacting-with-your-contracts)
-* `migrations/`: Directory for [scriptable deployment files](../getting-started/running-migrations#migration-files)
-* `test/`: Directory for test files for [testing your application and contracts](../testing/testing-your-contracts)
-* `truffle-config.js`: Truffle [configuration file](../reference/configuration)
+
+ ```note::
+  可以使用一个可选的选项 `--force` 在当前目录下初始化项目，不管当前目录的状态（即使它包含了其他人文件和目录）。
+  这个选项可用于 `init` and `unbox` 命令，不过要小心他会覆盖当前已经存在的文件或目录。
+ ```
+
+ 在操作完成之后，就有这样的一个项目目录结构：
+ 
+* `contracts/`: [Solidity合约](../getting-started/interacting-with-your-contracts)目录
+* `migrations/`: [部署脚本文件](../getting-started/running-migrations#migration-files)目录
+* `test/`: 测试脚本目录，参考 [如何测试合约于应用？](../testing/testing-your-contracts)
+* `truffle-config.js`: Truffle [配置文件](../reference/configuration)

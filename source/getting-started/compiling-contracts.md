@@ -1,4 +1,4 @@
-# Compiling contracts
+# 编译合约
 
 ## Location
 
