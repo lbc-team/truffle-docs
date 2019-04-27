@@ -42,7 +42,7 @@ Any of the following solutions will remedy this issue:
 
 ### build
 
-Build configuration of your application, if your application requires tight integration with Truffle. Most users likely will not need to configure this option. See the [Build Processes](/docs/truffle/advanced/build-processes) section for more details.
+Build configuration of your application, if your application requires tight integration with Truffle. Most users likely will not need to configure this option. See the [Build Processes](../advanced/build-processes) section for more details.
 
 ### networks
 
@@ -321,7 +321,7 @@ Provides Truffle with a list of installed third-party extensions installed as
 NPM package dependencies.
 
 Truffle plugin support is currently limited to plugins that define custom
-workflow commands. For more information, see [Third-Party Plugin Commands](/docs/truffle/getting-started/writing-external-scripts#third-party-plugin-commands).
+workflow commands. For more information, see [Third-Party Plugin Commands](../getting-started/writing-external-scripts#third-party-plugin-commands).
 
 
 

@@ -25,7 +25,7 @@ Execute build pipeline (if configuration present).
 truffle build
 ```
 
-Requires the `build` key to be present in the configuration. See the [Building your application](/docs/getting_started/build) and [Build processes](/docs/advanced/build_processes) sections for more details.
+Requires the `build` key to be present in the configuration. See the [Building your application](../getting_started/build) and [Build processes](../advanced/build_processes) sections for more details.
 
 <p class="alert alert-warning">
 **Alert**: This command is deprecated. Please use third-party build tools like webpack or grunt, or see our [Truffle Boxes](https://truffleframework.com/boxes) for an example.
@@ -72,9 +72,9 @@ truffle console [--network <name>] [--verbose-rpc]
 
 Spawns an interface to interact with contracts via the command line. Additionally, many Truffle commands are available within the console (without the `truffle` prefix).
 
-Requires an external Ethereum client, such as [Ganache](/docs/ganache/using) or geth. For a console that creates a development and test environment, use `truffle develop`.
+Requires an external Ethereum client, such as [Ganache](../ganache/using) or geth. For a console that creates a development and test environment, use `truffle develop`.
 
-See the [Using the console](/docs/getting_started/console) section for more details.
+See the [Using the console](../getting_started/console) section for more details.
 
 Options:
 
@@ -106,7 +106,7 @@ Interactively debug any transaction on the blockchain.
 truffle debug <transaction_hash>
 ```
 
-Will start an interactive debugging session on a particular transaction. Allows you to step through each action and replay. See the [Debugging your contracts](/docs/getting_started/debugging) section for more details.
+Will start an interactive debugging session on a particular transaction. Allows you to step through each action and replay. See the [Debugging your contracts](../getting_started/debugging) section for more details.
 
 <p class="alert alert-warning">
 **Alert**: This command is considered experimental.
@@ -120,7 +120,7 @@ Option:
 
 ### deploy
 
-Alias for `migrate`. See [migrate](/docs/truffle/reference/truffle-commands#migrate) for details.
+Alias for `migrate`. See [migrate](../reference/truffle-commands#migrate) for details.
 
 
 ### develop
@@ -135,7 +135,7 @@ Spawns a local development blockchain, and allows you to interact with contracts
 
 If you want an interactive console but want to use an existing blockchain, use `truffle console`.
 
-See the [Using the console](/docs/getting_started/console) section for more details.
+See the [Using the console](../getting_started/console) section for more details.
 
 
 ### exec
@@ -148,7 +148,7 @@ truffle exec <script.js> [--network <name>] [--compile]
 
 This will include `web3`, set the default provider based on the network specified (if any), and include your contracts as global objects while executing the script. Your script must export a function that Truffle can run.
 
-See the [Writing external scripts](/docs/getting_started/scripts) section for more details.
+See the [Writing external scripts](../getting_started/scripts) section for more details.
 
 Options:
 
@@ -202,7 +202,7 @@ Options:
 * `<package_name>`: Name of the package as listed in the Ethereum Package Registry. (required)
 * `@<version>`: When specified, will install a specific version of the package, otherwise will install the latest version.
 
-See the [Package Management with EthPM](/docs/getting_started/packages-ethpm) section for more details.
+See the [Package Management with EthPM](../getting_started/packages-ethpm) section for more details.
 
 
 ### migrate
@@ -213,7 +213,7 @@ Run migrations to deploy contracts.
 truffle migrate [--reset] [--f <number>] [--to <number>] [--network <name>] [--compile-all] [--verbose-rpc] [--dry-run] [--interactive]
 ```
 
-Unless specified, this will run from the last completed migration. See the [Migrations](/docs/getting_started/migrations) section for more details.
+Unless specified, this will run from the last completed migration. See the [Migrations](../getting_started/migrations) section for more details.
 
 Options:
 
@@ -263,7 +263,7 @@ Publish a package to the Ethereum Package Registry.
 truffle publish
 ```
 
-All parameters are pulled from your project's configuration file. Takes no arguments. See the [Package Management with EthPM](/docs/getting_started/packages-ethpm) section for more details.
+All parameters are pulled from your project's configuration file. Takes no arguments. See the [Package Management with EthPM](../getting_started/packages-ethpm) section for more details.
 
 ### run
 
@@ -282,8 +282,8 @@ Option:
 
 * `<command>`: Name of a command defined by an installed plugin. (required)
 
-Install plugins as NPM package dependencies and [configure Truffle](/docs/truffle/reference/configuration#plugins)
-to recognize the plugin. For more information, see [Third-Party Plugin Commands](/docs/truffle/getting-started/writing-external-scripts#third-party-plugin-commands).
+Install plugins as NPM package dependencies and [configure Truffle](../reference/configuration#plugins)
+to recognize the plugin. For more information, see [Third-Party Plugin Commands](../getting-started/writing-external-scripts#third-party-plugin-commands).
 
 
 ### serve
@@ -312,7 +312,7 @@ Run JavaScript and Solidity tests.
 truffle test [<test_file>] [--compile-all] [--network <name>] [--verbose-rpc] [--show-events]
 ```
 
-Runs some or all tests within the `test/` directory as specified. See the section on [Testing your contracts](/docs/getting_started/testing) for more information.
+Runs some or all tests within the `test/` directory as specified. See the section on [Testing your contracts](../getting_started/testing) for more information.
 
 Options:
 

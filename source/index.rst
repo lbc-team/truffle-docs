@@ -32,18 +32,18 @@ Truffle 是一个在以太坊虚拟机（EVM）上进行开发的世界级开发
    :maxdepth: 2
    :caption: 快速开始使用
 
-   quickstart/installation.md
-   quickstart/creating-a-project.md 
-   quickstart/compiling-contracts.md
-   quickstart/running-migrations.md
-   quickstart/interacting-with-your-contracts.md
-   quickstart/truffle-with-metamask.md
-   quickstart/package-management-via-ethpm.md
-   quickstart/package-management-via-npm.md
-   quickstart/debugging-your-contracts.md
-   quickstart/using-truffle-develop-and-the-console.md
-   quickstart/writing-external-scripts.md
-   quickstart/working-with-quorum.md
+   getting-started/installation.md
+   getting-started/creating-a-project.md 
+   getting-started/compiling-contracts.md
+   getting-started/running-migrations.md
+   getting-started/interacting-with-your-contracts.md
+   getting-started/truffle-with-metamask.md
+   getting-started/package-management-via-ethpm.md
+   getting-started/package-management-via-npm.md
+   getting-started/debugging-your-contracts.md
+   getting-started/using-truffle-develop-and-the-console.md
+   getting-started/writing-external-scripts.md
+   getting-started/working-with-quorum.md
    
 .. toctree::
    :maxdepth: 2

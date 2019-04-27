@@ -1,6 +1,6 @@
 # Contract Abstractions
 
-Truffle provides contract abstractions for interacting with your contracts.  Skip ahead to the [api section](/docs/truffle/reference/contract-abstractions#api) for a list of contract methods.
+Truffle provides contract abstractions for interacting with your contracts.  Skip ahead to the [api section](../reference/contract-abstractions#api) for a list of contract methods.
 
 ### Usage
 
@@ -45,7 +45,7 @@ const result = await deployed.someFunction(5);
 // Do something with the result or continue with more transactions.
 ```
 
-See the [processing transaction results](/docs/truffle/getting-started/interacting-with-your-contracts#processing-transaction-results) section to learn more about the results object obtained from making transactions.
+See the [processing transaction results](../getting-started/interacting-with-your-contracts#processing-transaction-results) section to learn more about the results object obtained from making transactions.
 
 Contract methods and events have an EventEmitter interface.  So you can set up handlers like the following:
 
@@ -158,7 +158,7 @@ Example.numberFormat = 'BigNumber';
 This method allows you to set the block timeout for transactions.  Contract instances created from this abstraction will have the specified transaction block timeout.  This means that if a transaction does not immediately get mined, it will retry for the specified number of blocks.
 
 #### `MyContract.autoGas = <boolean>`
-If this is set to true, instances created from this abstraction will use `web3.eth.estimateGas` and then apply a gas multiplier to determine the amount of gas to include with the transaction.  The default value for this is `true`.  See [gasMultiplier](/docs/truffle/reference/contract-abstractions#-code-mycontract-gasmultiplier-gas_multiplier-code-).
+If this is set to true, instances created from this abstraction will use `web3.eth.estimateGas` and then apply a gas multiplier to determine the amount of gas to include with the transaction.  The default value for this is `true`.  See [gasMultiplier](../reference/contract-abstractions#-code-mycontract-gasmultiplier-gas_multiplier-code-).
 
 #### `MyContract.gasMultiplier(gas_multiplier)`
 This is the value used when `autoGas` is enabled to determine the amount of gas to include with transactions.  The gas is computed by using `web3.eth.estimateGas` and multiplying it by the gas multiplier.  The default value is `1.25`.

@@ -12,7 +12,7 @@ Once you've done the above, you're ready to use MetaMask.
 
 [MetaMask](https://metamask.io/) is the easiest way to interact with dapps in a browser. It is an extension for Chrome or Firefox that connects to an Ethereum network without running a full node on the browser's machine. It can connect to the main Ethereum network, any of the testnets (Ropsten, Kovan, and Rinkeby), or a local blockchain such as the one created by [Ganache](/ganache) or Truffle Develop.
 
-![MetaMask](/img/docs/truffle/truffle-with-metamask/metamask.png)
+![MetaMask](https://truffleframework.com/img/docs/truffle/truffle-with-metamask/metamask.png)
 
 For development with Truffle this means we can use our dapp the same way users will interact with it on a live network.
 
@@ -54,7 +54,7 @@ if (typeof web3 !== 'undefined') {
 
 To use Ganache with MetaMask, click the MetaMask icon in your browser and this screen will appear:
 
-![MetaMask initial screen](/img/docs/truffle/truffle-with-metamask/metamask-create-password.png)
+![MetaMask initial screen](https://truffleframework.com/img/docs/truffle/truffle-with-metamask/metamask-create-password.png)
 
 *MetaMask initial screen*
 
@@ -66,13 +66,13 @@ Click **Import with seed phrase**. In the box marked **Wallet Seed**, enter the 
 
 Enter a password below that and click **OK**.
 
-![MetaMask seed phrase](/img/docs/truffle/truffle-with-metamask/metamask-seed-phrase.png)
+![MetaMask seed phrase](https://truffleframework.com/img/docs/truffle/truffle-with-metamask/metamask-seed-phrase.png)
 
 *MetaMask seed phrase*
 
 Now we need to connect MetaMask to the blockchain created by Ganache. Click the menu that shows "Main Network" and select **Custom RPC**.
 
-![MetaMask network menu](/img/docs/truffle/truffle-with-metamask/metamask-select-network.png)
+![MetaMask network menu](https://truffleframework.com/img/docs/truffle/truffle-with-metamask/metamask-select-network.png)
 
 *MetaMask network menu*
 
@@ -86,7 +86,7 @@ Now that we've connected MetaMask to Ganache, you'll be taken to the accounts sc
 
 Click the account icon in the upper-right to create new accounts, the first 10 of which will correspond to the 10 accounts displayed when you launched Ganache.
 
-![MetaMask account](/img/docs/truffle/truffle-with-metamask/metamask-account1.png)
+![MetaMask account](https://truffleframework.com/img/docs/truffle/truffle-with-metamask/metamask-account1.png)
 
 *MetaMask account*
 

@@ -30,7 +30,7 @@ This will run the client on `http://127.0.0.1:9545`. It will display the first 1
 
 Once launched, Truffle Develop will provide you with a console you can use to run all available Truffle commands. These commands are input by omitting the `truffle` prefix. So, for example, to compile your smart contracts, instead of typing `truffle compile`, you need to only type `compile`.
 
-To read more about interacting with the console, please see the [Using the Console](/docs/truffle/getting-started/using-truffle-develop-and-the-console) section.
+To read more about interacting with the console, please see the [Using the Console](../getting-started/using-truffle-develop-and-the-console) section.
 
 ### Ganache CLI
 

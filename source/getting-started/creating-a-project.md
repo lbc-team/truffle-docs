@@ -31,7 +31,7 @@ You can create a bare project template, but for those just getting started, you 
 
 Once this operation is completed, you'll now have a project structure with the following items:
 
-* `contracts/`: Directory for [Solidity contracts](/docs/truffle/getting-started/interacting-with-your-contracts)
-* `migrations/`: Directory for [scriptable deployment files](/docs/truffle/getting-started/running-migrations#migration-files)
-* `test/`: Directory for test files for [testing your application and contracts](/docs/truffle/testing/testing-your-contracts)
-* `truffle-config.js`: Truffle [configuration file](/docs/truffle/reference/configuration)
+* `contracts/`: Directory for [Solidity contracts](../getting-started/interacting-with-your-contracts)
+* `migrations/`: Directory for [scriptable deployment files](../getting-started/running-migrations#migration-files)
+* `test/`: Directory for test files for [testing your application and contracts](../testing/testing-your-contracts)
+* `truffle-config.js`: Truffle [configuration file](../reference/configuration)
