@@ -1,6 +1,8 @@
 
 # 安装 Truffle
 
+只要通过以下命令就可以安装Truffle
+
 ```bash
 npm install -g truffle
 ```
@@ -10,14 +12,15 @@ npm install -g truffle
 ```
 ## 环境依赖
 
-* NodeJS v8.9.4 or later
+* NodeJS v8.9.4 或 之后的版本
 * Windows, Linux or Mac OS X
 
-Truffle also requires that you have a running Ethereum client which supports the standard JSON RPC API (which is nearly all of them). There are many to choose from, and some better than others for development. We'll discuss them in detail in the [Choosing an Ethereum client](/docs/getting_started/client) section.
+Truffle 要求我们有一个运行的以太坊客户端，它支持标准的JSON RPC API 接口。可选的客户端有很多，参考 [选择以太坊客户端](../reference/choosing-an-ethereum-client.md)。
 
 ```eval_rst
 .. _Recommendations for Windows:
 ```
-## Windows 需了解
 
-If you're running Truffle on Windows, you may encounter some naming conflicts that could prevent Truffle from executing properly. Please see [the section on resolving naming conflicts](/docs/advanced/configuration#resolving-naming-conflicts-on-windows) for solutions.
+## Windows 用户需了解
+
+如果您在Windows上运行Truffle，您可能会遇到一些可能阻止Truffle正常执行的命名冲突。可阅读[解决命名冲突](../reference/configuration.html#resolving-naming-conflicts-on-windows) 寻求解决方案。

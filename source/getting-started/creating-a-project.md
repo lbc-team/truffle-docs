@@ -34,6 +34,6 @@ Truffle 大多数命令都是在 Truffle 项目目录下运行的。 所以第�
  在操作完成之后，就有这样的一个项目目录结构：
  
 * `contracts/`: [Solidity合约](../getting-started/interacting-with-your-contracts)目录
-* `migrations/`: [部署脚本文件](../getting-started/running-migrations#migration-files)目录
+* `migrations/`: [部署脚本文件](../getting-started/running-migrations.html#migration-files)目录
 * `test/`: 测试脚本目录，参考 [如何测试合约于应用？](../testing/testing-your-contracts)
 * `truffle-config.js`: Truffle [配置文件](../reference/configuration)

@@ -1,53 +1,63 @@
 # 编译合约
 
-## Location
+## 合约文件目录
 
-All of your contracts are located in your project's `contracts/` directory. As contracts are written in [Solidity](https://solidity.readthedocs.io/en/develop/), all files containing contracts will have a file extension of `.sol`. Associated Solidity [libraries](http://solidity.readthedocs.org/en/latest/contracts.html#libraries) will also have a `.sol` extension.
+您的所有合约都位于项目的 `contracts/` 目录中。 由于合约是用[Solidity](https://learnblockchain.cn/docs/solidity/)编写的，所有包含合约的文件都将具有 `.sol` 文件扩展名。 相关的 Solidity [库](https://learnblockchain.cn/docs/solidity/contracts.html#libraries)也将有一个`.sol`扩展名。
 
-With a bare Truffle [project](../quickstart.md) (created through `truffle init`), you're given a single `Migrations.sol` file that helps in the deployment process. If you're using a [Truffle Box](https://truffleframework.com/boxes), you will have multiple files here.
+使用一个通过`truffle init`创建的空 Truffle [工程](../quickstart.md)会生成一个用于部署的`Migrations.sol` 文件。 如果您使用 [Truffle Box](https://truffleframework.com/boxes)，则会有多个文件。
 
-## Command
 
-To compile a Truffle project, change to the root of the directory where the project is located and then type the following into a terminal:
+## 编译命令
+
+要编译Truffle项目里的合约，请切换到项目工程所在根目录，然后在终端中键入以下内容：
 
 ```shell
 truffle compile
 ```
 
-Upon first run, all contracts will be compiled. Upon subsequent runs, Truffle will compile only the contracts that have been changed since the last compile. If you'd like to override this behavior, run the above command with the `--all` option.
+首次运行时，将编译所有合约。 在后续运行中，Truffle将仅编译自上次编译以来有更改的合约。 如果您想覆盖此行为，可以使用 `--all` 选项运行上面的命令。
 
-## Build artifacts
 
-Artifacts of your compilation will be placed in the `build/contracts/` directory, relative to your project root. (This directory will be created if it does not exist.)
 
-These artifacts are integral to the inner workings of Truffle, and they play an important part in the successful deployment of your application. **You should not edit these files** as they'll be overwritten by contract compilation and deployment.
+## 构建 Artifacts
 
-## Dependencies
+ ```note::
+  译者注：Artifacts 主要是指编译的目标文件，因为中文中没有合适的对应词，保留英文。
+ ```
 
-You can declare contract dependencies using Solidity's [import](http://solidity.readthedocs.org/en/latest/layout-of-source-files.html#importing-other-source-files) command. Truffle will compile contracts in the correct order and ensure all dependencies are sent to the compiler. Dependencies can be specified in two ways:
+编译的目标文件 Artifacts 将放在 `build/contracts/` 目录中，相对于项目根目录（如果该目录不存在，将创建该目录。）
 
-### Importing dependencies via file name
+这些 Artifacts 是Truffle内部工作的组成部分，它们在成功部署应用程序中起着重要作用。 **您不应编辑这些文件**，因为这些文件将被合约编译和部署覆盖。
 
-To import contracts from a separate file, add the following code to your Solidity source file:
+
+## 引入合约依赖文件
+
+您可以使用Solidity的 [import](https://learnblockchain.cn/docs/solidity/layout-of-source-files.html#import) 命令声明合约依赖文件。 Truffle 将以正确的顺序编译合约，并确保将所有依赖文件发送给编译器。 可以通过两种方式指定依赖关系：
+
+### 通过文件名导入依赖文件
+
+要从单独的文件导入合约，请将以下代码添加到Solidity源文件中：
 
 ```
 import "./AnotherContract.sol";
 ```
 
-This will make all contracts within `AnotherContract.sol` available. Here, `AnotherContract.sol` is relative to the path of the current contract being written.
+这将导入 `AnotherContract.sol` 中的所有合约，这里 `AnotherContract.sol` 是在当前编写的合约目录下。
 
-Note that Solidity allows other import syntaxes as well. See the Solidity [import documentation](http://solidity.readthedocs.org/en/latest/layout-of-source-files.html#importing-other-source-files) for more information.
+Solidity  还有其他的导入语法，可以参考[Solidity文档:导入源文件](https://learnblockchain.cn/docs/solidity/layout-of-source-files.html#import) 了解更多。
 
-### Importing contracts from an external package
 
-Truffle supports dependencies installed via both [EthPM](package-management-via-ethpm.md) and [NPM](package-management-via-npm.md). To import contracts from a dependency, use the following syntax
+### 从外部包导入合约
+
+Truffle支持通过[EthPM](package-management-via-ethpm.md)和[NPM](package-management-via-npm.md)安装的依赖。 可使用以下语法把依赖导入合约：
+
 
 ```
 import "somepackage/SomeContract.sol";
 ```
 
-Here, `somepackage` represents a package installed via EthPM or NPM, and `SomeContract.sol` represents a Solidity source file provided by that package.
+这里，`somepackage` 表示通过EthPM或NPM安装的包，`SomeContract.sol` 表示该包提供的Solidity源文件。
 
-Note that Truffle will search installed packages from EthPM first before searching for packages installed from NPM, so in the rare case of a naming conflict the package installed via EthPM will be used.
+请注意，在搜索从NPM安装的软件包之前，Truffle将首先从EthPM搜索已安装的软件包，因此在极少数情况下会出现命名冲突，将使用通过EthPM安装的软件包。
 
-For more information on how to use Truffle's package management features, please see the Truffle [EthPM](package-management-via-ethpm.md) and [NPM](package-management-via-npm.md) documentation.
+有关如何使用Truffle软件包管理功能的更多信息，请参阅Truffle [EthPM](package-management-via-ethpm.md)和[NPM](package-management-via-npm.md)文档。
