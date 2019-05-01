@@ -1,48 +1,54 @@
-# 合约进行交互
+# 与合约进行交互
 
-## Introduction
+## 介绍
 
-If you were writing raw requests to the Ethereum network yourself in order to interact with your contracts, you'd soon realize that writing these requests is clunky and cumbersome. As well, you might find that managing the state for each request you've made is _complicated_. Fortunately, Truffle takes care of this complexity for you, to make interacting with your contracts a breeze.
 
-## Reading and writing data
+如果我们为了与合约进行（测试）交互而向每次都向以太坊网络进行原始请求，我们很快就会意识到编写这些请求是笨重而繁琐的。 同样，我们可能会发现管理每个请求的状态是 _复杂的_。 幸运的是，Truffle为我们处理这种复杂性，使我们与合约的互动变得轻而易举。
 
-The Ethereum network makes a distinction between writing data to the network and reading data from it, and this distinction plays a significant part in how you write your application. In general, writing data is called a **transaction** whereas reading data is called a **call**. Transactions and calls are treated very differently, and have the following characteristics.
+## 数据的读和写
 
-### Transactions
+以太坊网络区分将数据写入网络和从网络读取数据，在编写应用程序我们需要关注这个区别。 通常，写入数据称为**交易 transaction**，而读取数据称为 **调用 call**。 `交易`和`调用`的处理方式是截然不同的，下面介绍：
 
-Transactions fundamentally change the state of the network. A transaction can be as simple as sending Ether to another account, or as complicated as executing a contract function or adding a new contract to the network. The defining characteristic of a transaction is that it writes (or changes) data. Transactions cost Ether to run, known as "gas", and transactions take time to process. When you execute a contract's function via a transaction, you cannot receive that function's return value because the transaction isn't processed immediately. In general, functions meant to be executed via a transaction will not return a value; they will return a transaction id instead. So in summary, transactions:
+### 交易 Transactions
 
-* Cost gas (Ether)
-* Change the state of the network
-* Aren't processed immediately
-* Won't expose a return value (only a transaction id).
+`交易`从改变了网络的状态。 `交易`可以像 发送 Ether 到一个帐户一样简单，也可以像执行合约函数或向网络部署新合约一样复杂。 `交易`的特征是它**写入（或更改）数据**。 一个`交易`需要耗费以太运行，称为 “gas”，`交易`同样需要（较长）时间来处理。 当我们通过`交易`执行合约的函数时，我们无法接收该函数的返回值，因为交易不会立即处理。 通常，通过交易执行的函数不会返回值，仅仅是返回一个交易ID。 可总结`交易`的特征如下：
 
-### Calls
 
-Calls, on the other hand, are very different. Calls can be used to execute code on the network, though no data will be permanently changed. Calls are free to run, and their defining characteristic is that they read data. When you execute a contract function via a call you will receive the return value immediately. In summary, calls:
 
-* Are free (do not cost gas)
-* Do not change the state of the network
-* Are processed immediately
-* Will expose a return value (hooray!)
+* 消耗Gas 费用（以太）
+* 会更改网络状态
+* 不会立即执行（需要等待网络矿工打包）
+* 没有执行返回值（只是一个交易ID）。
 
-Choosing between a transaction and a call is as simple as deciding whether you want to read data, or write it.
+### 调用 Calls
 
-## Introducing abstractions
+`调用`则不同，`调用`依然可以在网络上执行合约代码，但不会永久更改任何数据（如状态变量）。 `调用`的特征是读取数据。 当我们通过`调用`执行合约函数时，我们可以立刻获取到返回值。 可总结`调用Call`的特点：
 
-Contract abstractions are the bread and butter of interacting with Ethereum contracts from Javascript. In short, contract abstractions are wrapper code that makes interaction with your contracts easy, in a way that lets you forget about the many engines and gears executing under the hood. Truffle uses its own contract abstraction via the [truffle-contract](https://github.com/trufflesuite/truffle/tree/master/packages/truffle-contract) module, and it is this contract abstraction that's described below.
+* 免费（不消耗 Gas）
+* 不改变网络状态
+* 立即执行
+* 有返回值
 
-In order to appreciate the usefulness of a contract abstraction, however, we first need a contract to talk about. We'll use the MetaCoin contract available to you through Truffle Boxes via `truffle unbox metacoin`.
+选择使用 `交易`还是`调用` 关键是看 读取数据 还是需要写入数据。
+
+
+## 什么是合约抽象
+
+合约抽象（ Contract abstraction）是从 Javascript 与以太坊合约交互的基础和黄油。 简单说，合约抽象是一种代码封装，让我们可以轻松地与合约进行交互，从而让我们忘记在引擎盖下执行的引擎和齿轮。 Truffle 通过[truffle-contract](https://github.com/trufflesuite/truffle/tree/master/packages/truffle-contract)模块使用合约抽象，下面会介绍。
+
+
+在这里，我们通过一个例子 `metacoin`，来介绍合约抽象的作用，通过Truffle Boxes，执行`truffle unbox metacoin`使用MetaCoin合约，下面合约代码：
+
 
 ```javascript
 pragma solidity ^0.4.2;
 
 import "./ConvertLib.sol";
 
-// This is just a simple example of a coin-like contract.
-// It is not standards compatible and cannot be expected to talk to other
-// coin/token contracts. If you want to create a standards-compliant
-// token, see: https://github.com/ConsenSys/Tokens. Cheers!
+
+
+//这只是一个类似Coin 合约的简单例子，并不是一个标准代币合约
+// 常见Token合约可参考：https://github.com/ConsenSys/Tokens
 
 contract MetaCoin {
 	mapping (address => uint) balances;
@@ -57,7 +63,7 @@ contract MetaCoin {
 		if (balances[msg.sender] < amount) return false;
 		balances[msg.sender] -= amount;
 		balances[receiver] += amount;
-		Transfer(msg.sender, receiver, amount);
+    emit Transfer(msg.sender, receiver, amount);
 		return true;
 	}
 
@@ -72,9 +78,14 @@ contract MetaCoin {
 
 ```
 
-This contract has three methods aside from the constructor (`sendCoin`, `getBalanceInEth`, and `getBalance`). All three methods can be executed as either a transaction or a call.
+ ```note::
+  译者注： 这段代码其实有点旧了（不过并不影响本节要表达的意思）， 现在Solidity 升级到 0.5 以上，应该在合约里显示的标明合约是否修改状态。
+ ```
 
-Now let's look at the Javascript object called `MetaCoin` provided for us by Truffle, as made available in the [Truffle console](../getting-started/using-truffle-develop-and-the-console):
+除了构造函数之外，这个合约还有三个方法（`sendCoin`，`getBalanceInEth`和`getBalance`），这三种方法都可以作为`交易`或`调用`来执行。
+
+现在让我们来看看Truffle为我们提供的名为 “MetaCoin” 的 Javascript 对象，它可以在[Truffle控制台](https://learnblockchain.cn/docs/truffle/getting-started/using-truffle-develop-and-the-console.html)访问，如：
+
 
 ```javascript
 truffle(develop)> let instance = await MetaCoin.deployed()
@@ -91,68 +102,75 @@ truffle(develop)> instance
 // ...
 ```
 
-Notice that the abstraction contains the exact same functions that exist within our contract. It also contains an address which points to the deployed version of the MetaCoin contract.
+注意: 合约抽象包含与合约中完全相同的函数。 它还包含一个指向 MetaCoin合约 部署版本的地址。
 
-## Executing contract functions
 
-Using the abstraction you can easily execute contract functions on the Ethereum network.
+## 执行合约函数
 
-### Making a transaction
+使用合约抽象，我们可以轻松地在以太坊网络上执行合约函数。
 
-There are three functions on the MetaCoin contract that we can execute. If you analyze each of them, you'll see that `sendCoin` is the only function that aims to make changes to the network. The goal of `sendCoin` is to "send" some Meta coins from one account to the next, and these changes should persist.
+### 执行交易Transactions
 
-When calling `sendCoin`, we'll execute it as a transaction. In the following example, we'll send 10 Meta coin from one account to another, in a way that persists changes on the network:
+我们可以执行MetaCoin合约上的三个函数。 如果我们分析每一个函数，会发现`sendCoin`是唯一一个会改变网络状态的函数。 `sendCoin` 的作用是从一个帐户“发送”一些 Meta coins 到另一个帐户，这个变化是需要持续保存的。
+
+当调用`sendCoin`时，我们需要它作为一个`交易`执行。 如在下面的示例中，使用`交易`调用的方式从一个帐户向另一个帐户发送10个币：
+
 
 ```javascript
 truffle(develop)> let accounts = await web3.eth.getAccounts()
 truffle(develop)> instance.sendCoin(accounts[1], 10, {from: accounts[0]})
 ```
 
-There are a few things interesting about the above code:
+以上代码有一些有趣的事情：
 
-* We called the abstraction's `sendCoin` function directly. This will result in a transaction by default (i.e, writing data) instead of call.
-* We passed an object as the third parameter to `sendCoin`. Note that the `sendCoin` function in our Solidity contract doesn't have a third parameter. What you see above is a special object that can always be passed as the last parameter to a function that lets you edit specific details about the transaction. Here, we set the `from` address ensuring this transaction came from `accounts[0]`.
+* 我们直接调用了`抽象合约`的`sendCoin`函数。 它默认使用`交易`的方式去执行，而不是使用`调用`。
+* 我们还用一个对象作为第三个参数传递给`sendCoin`函数。 注意，在 Solidity 合约中的`sendCoin`函数没有第三个参数。 这是一个特殊对象，它始终可以作为最后一个参数传递给函数，该函数允许我们编辑有关`交易`的特定信息。 在这里，我们设置了`from`地址，确保此交易来自`accounts [0]`。
 
 
-### Making a call
+### 执行调用 call
 
-Continuing with MetaCoin, notice the `getBalance` function is a great candidate for reading data from the network. It doesn't need to make any changes, as it just returns the MetaCoin balance of the address passed to it. Let's give it a shot:
+继续使用MetaCoin，注意`getBalance`函数是从网络读取数据的理想选择。 它不需要进行任何更改，因为它只返回地址参数的 MetaCoin 余额。 让我们试一试：
+
 
 ```javascript
 truffle(develop)> let balance = await instance.getBalance(accounts[0])
 truffle(develop)> balance.toNumber()
 ```
 
-What's interesting here:
 
-* We received a return value. Note that since the Ethereum network can handle very large numbers, we're given a [BigNumber](https://github.com/MikeMcl/bignumber.js/) object which we then convert to a number.
+调用会得到返回值。 注意，由于以太坊网络可以处理非常大的数字，我们会得到一个[BigNumber](https://github.com/MikeMcl/bignumber.js/)对象，然后将其转换为数字。
 
-<p class="alert alert-warning">
-**Warning**: We convert the return value to a number because in this example the numbers are small. However, if you try to convert a BigNumber that's larger than the largest integer supported by Javascript, you'll likely run into errors or unexpected behavior.
-</p>
+ ```note::
+  这里返回值转换为数字，因为在此示例中数字很小。 但是如果尝试转换大于 Javascript 支持的最大整数的 BigNumber，可能会遇到错误或无法预期的行为。
+ ```
 
-### Processing transaction results
 
-When you make a transaction, you're given a `result` object that gives you a wealth of information about the transaction.
+### 处理交易结果
+
+当我们进行`交易`时，我们会得到一个`result`对象，它为我们提供了大量有关`交易`的信息。
+
 
 ```javascript
 truffle(develop)> let result = await contract.sendCoin(accounts[1], 10, {from: accounts[0]})
 truffle(develop)> result
 ```
 
-Specifically, you get the following:
+具体来说，我们将获得以下内容：
 
-* `result.tx` *(string)* - Transaction hash
-* `result.logs` *(array)* - Decoded events (logs)
-* `result.receipt` *(object)* - Transaction receipt (includes the amount of gas used)
 
-For more information, please see the [README](https://github.com/trufflesuite/truffle/tree/master/packages/truffle-contract) in the `truffle-contract` package.
+* `result.tx` *(string)* - 交易哈希 hash
+* `result.logs` *(array)* - 解码过的事件 (日志)
+* `result.receipt` *(object)* - 交易收据 receipt（包括使用的gas）
 
-### Catching events
+想了解更多，可参阅`truffle-contract`包中的[README](https://github.com/trufflesuite/truffle/tree/master/packages/truffle-contract)。
 
-Your contracts can fire events that you can catch to gain more insight into what your contracts are doing. The easiest way to handle events is by processing the `logs` array contained within `result` object of the transaction that triggered the event.
 
-If we explicitly output the first log entry we can see the details of the event that was emitted as part of the `sendCoin` call (`Transfer(msg.sender, receiver, amount);`).
+### 捕获事件 events
+
+通过捕获合约触发的事件，可以更深入地了解合约正在做什么。 处理事件的最简单方法是处理交易结果`result`对象中包含的`logs`数组。
+
+如果我们显式输出第一个日志条目，我们可以看到 `sendCoin` 函数触发事件（`Transfer（msg.sender，receiver，amount）;`)的细节:
+
 
 ```javascript
 truffle(develop)> result.logs[0]
@@ -176,9 +194,11 @@ truffle(develop)> result.logs[0]
      _value: <BN: a> } }
 ```
 
-### Add a new contract to the network
+### 部署新合约
 
-In all of the above cases, we've been using a contract abstraction that has already been deployed. We can deploy our own version to the network using the `.new()` function:
+
+在上述所有情况中，我们一直在使用已经部署的合约抽象。 还可以使用`.new（）`函数把自己版本的合约部署到网络：
+
 
 ```javascript
 truffle(develop)> let newInstance = await MetaCoin.new()
@@ -186,19 +206,21 @@ truffle(develop)> newInstance.address
 '0x64307b67314b584b1E3Be606255bd683C835A876'
 ```
 
-### Use a contract at a specific address
+### 指定合约地址
 
-If you already have an address for a contract, you can create a new abstraction to represent the contract at that address.
+如果我们已有合约的地址，则可以在该地址上创建新的抽象。
+
 
 ```javascript
 let specificInstance = await MetaCoin.at("0x1234...");
 ```
 
-### Sending ether to a contract
+### 给合约发送以太
 
-You may simply want to send Ether directly to a contract, or trigger a contract's [fallback function](http://solidity.readthedocs.io/en/develop/contracts.html#fallback-function). You can do so using one of the following two options.
+可以简单的把 Ether 直接发送给合约地址，或是触发合约的[Fallback 函数](https://learnblockchain.cn/docs/solidity/contracts.html#fallback)。有两种方式：
 
-Option 1: Send a transaction directly to a contract via `instance.sendTransaction()`. This is promisified like all available contract instance functions, and has the same API as `web3.eth.sendTransaction` but without the callback. The `to` value will be automatically filled in for you if not specified.
+1. 方法1：通过`instance.sendTransaction（）`将交易直接发送到合约。 它像执行所有可用的合约实例函数一样有效，并且和`web3.eth.sendTransaction`功能相同，但没有回调。 如果没有指定，目标地址`to`值将自动填入。
+
 
 ```javascript
 instance.sendTransaction({...}).then(function(result) {
@@ -206,7 +228,8 @@ instance.sendTransaction({...}).then(function(result) {
 });
 ```
 
-Option 2: There's also shorthand for just sending Ether directly:
+2.  方法2：还可以直接调用`send`：
+
 
 ```javascript
 instance.send(web3.toWei(1, "ether")).then(function(result) {
@@ -214,6 +237,8 @@ instance.send(web3.toWei(1, "ether")).then(function(result) {
 });
 ```
 
-## Further reading
+## 延伸阅读
 
-The contract abstractions provided by Truffle contain a wealth of utilities for making interacting with your contracts easy. Check out the [truffle-contract](https://github.com/trufflesuite/truffle/tree/master/packages/truffle-contract) documentation for tips, tricks and insights.
+Truffle 提供的合约抽象包含大量实用工具，可以轻松地与我们的合约进行交互。 查看[github truffle-contract](https://github.com/trufflesuite/truffle/tree/master/packages/truffle-contract)文档，了解更多。
+
+

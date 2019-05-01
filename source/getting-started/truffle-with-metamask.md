@@ -8,7 +8,7 @@ Before you can interact with smart contracts in a browser, make sure they're com
 
 Once you've done the above, you're ready to use MetaMask.
 
-## What is MetaMask?
+## MetaMask 是什么?
 
 [MetaMask](https://metamask.io/) is the easiest way to interact with dapps in a browser. It is an extension for Chrome or Firefox that connects to an Ethereum network without running a full node on the browser's machine. It can connect to the main Ethereum network, any of the testnets (Ropsten, Kovan, and Rinkeby), or a local blockchain such as the one created by [Ganache](/ganache) or Truffle Develop.
 
@@ -16,7 +16,7 @@ Once you've done the above, you're ready to use MetaMask.
 
 For development with Truffle this means we can use our dapp the same way users will interact with it on a live network.
 
-## Installing MetaMask
+## 安装 MetaMask
 
 * To install MetaMask for Chrome, go to the [Chrome Web Store](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn) and click the **Add to Chrome** button.
 
@@ -24,7 +24,7 @@ For development with Truffle this means we can use our dapp the same way users w
 
 With our front-end ready to be used and MetaMask installed, we're ready to see our dapp in all its glory.
 
-## Using MetaMask with Ganache
+## MetaMask 和 Ganache 搭配使用
 
 [Ganache](/ganache) is a graphical application that runs a blockchain that can be used for testing purposes. It runs on `127.0.0.1:7545`.
 
@@ -32,7 +32,7 @@ With our front-end ready to be used and MetaMask installed, we're ready to see o
 **Note**: We recommend specifying `127.0.0.1` instead of `localhost` because the address does not require a network connection and so is more suitable for development.
 </p>
 
-### Detecting MetaMask's web3 injection
+### 探测 MetaMask 注入的 web3
 
 Before diving in, we'll need to make sure the dapp is checking for MetaMask's `web3` instance and that the extension itself is configured properly with Ganache.
 
@@ -50,7 +50,7 @@ if (typeof web3 !== 'undefined') {
 }
 ```
 
-### Setting up MetaMask
+### 设置 MetaMask
 
 To use Ganache with MetaMask, click the MetaMask icon in your browser and this screen will appear:
 
@@ -90,7 +90,7 @@ Click the account icon in the upper-right to create new accounts, the first 10 o
 
 *MetaMask account*
 
-## Using MetaMask with Truffle Develop
+## 搭配 Truffle Develop 使用 MetaMask
 
 Truffle Develop is a command-line application that runs a temporary blockchain that is also used for testing purposes. It runs on `127.0.0.1:9545`.
 
@@ -114,7 +114,7 @@ Using MetaMask with Truffle Develop is very similar to that of Ganache. The only
 
 In MetaMask, when entering the "New RPC URL", enter `http://127.0.0.1:9545`.
 
-## Using MetaMask with Ganache CLI
+## 搭配 Ganache CLI 使用 MetaMask
 
 Using MetaMask with Ganache CLI is also very similar to that of Ganache. The only difference is that Ganache CLI runs by default on `http://127.0.0.1:8545` so you'll want to edit the above web3 code to say:
 

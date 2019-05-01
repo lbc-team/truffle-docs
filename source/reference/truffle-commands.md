@@ -14,7 +14,7 @@ truffle <command> [options]
 Passing no arguments is equivalent to `truffle help`, which will display a list of all commands and then exit.
 
 
-## Available commands
+## 命令列表
 
 
 ### build
@@ -226,6 +226,10 @@ Options:
 * `--dry-run`: Fork the network specified and only perform a test migration.
 * `--interactive`: Prompt to confirm that the user wants to proceed after the dry run.
 
+
+```eval_rst
+.. _networks:
+```
 
 ### networks
 

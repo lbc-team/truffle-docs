@@ -5,7 +5,7 @@ Sometimes it's nice to work with your contracts interactively for testing and de
 * **Truffle console**: A basic interactive console connecting to any Ethereum client
 * **Truffle Develop**: An interactive console that also spawns a development blockchain
 
-## Why two different consoles?
+## 为什么有两个控制台?
 
 Having two different consoles allows you to choose the best tool for your needs.
 
@@ -21,11 +21,11 @@ Reasons to use **Truffle Develop**:
 * You don't need to work with specific accounts (and you're fine with using default development accounts)
 * You don't want to install and manage a separate blockchain client
 
-## Commands
+## 命令
 
 All commands require that you be in your project folder. You do not need to be at the root.
 
-### Console
+### 登录控制台
 
 To launch the console:
 
@@ -33,7 +33,7 @@ To launch the console:
 truffle console
 ```
 
-This will look for a network definition called `development` in the configuration, and connect to it, if available. You can override this using the `--network <name>` option. See more details in the [Networks](/docs/advanced/networks) section as well as the [command reference](/docs/advanced/commands).
+This will look for a network definition called `development` in the configuration, and connect to it, if available. You can override this using the `--network <name>` option. See more details in the [Networks](../advanced/networks-and-app-deployment.md) section as well as the [command reference](../reference/truffle-commands.md).
 
 When you load the console, you'll immediately see the following prompt:
 
@@ -43,7 +43,7 @@ truffle(development)>
 
 This tells you you're running within a Truffle console using the `development` network.
 
-### Truffle Develop
+### 登录Develop控制台 
 
 To launch Truffle Develop:
 
@@ -88,7 +88,7 @@ Mnemonic: candy maple cake sugar pudding cream honey rich smooth crumble sweet t
 This shows you the addresses, private keys, and mnemonic for this particular blockchain.
 
 <p class="alert alert-info">
-**Note**: When you run `truffle develop` for the first time, Truffle will generate a random mnemonic that will persist for you and you alone. If you want to use a different mnemonic or set of addresses, we recommend using [Ganache](/docs/ganache/using).
+**Note**: When you run `truffle develop` for the first time, Truffle will generate a random mnemonic that will persist for you and you alone. If you want to use a different mnemonic or set of addresses, we recommend using [Ganache](https://truffleframework.com/docs/ganache/quickstart).
 </p>
 
 
@@ -98,7 +98,7 @@ This shows you the addresses, private keys, and mnemonic for this particular blo
 </p>
 
 
-#### Configuring Truffle Develop
+#### 配置 Truffle Develop
 
 You can configure `truffle develop` to use any of the available
 [ganache-core](https://github.com/trufflesuite/ganache-core#usage) options.
@@ -122,7 +122,7 @@ module.exports = {
 ```
 
 
-## Features
+## 功能
 
 Both Truffle Develop and the console provide most of the features available in the Truffle command line tool. For instance, you can type `migrate --reset` within the console, and it will be interpreted the same as if you ran `truffle migrate --reset` on the command line.
 
@@ -152,4 +152,4 @@ Additionally, both Truffle Develop and the console have the following features:
 
 If a Truffle command is not available, it is because it is not relevant for an existing project (for example, `init`) or wouldn't make sense (for example, `develop` or `console`).
 
-See full [command reference](/docs/advanced/commands) for more information.
+See full [command reference](../reference/truffle-commands.md) for more information.

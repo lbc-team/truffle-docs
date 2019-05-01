@@ -108,4 +108,4 @@ When using a network like the default `develop` network that's configured to mat
 $ truffle networks --clean
 ```
 
-See the [command reference](/docs/advanced/commands#networks) for more information.
+See the [command reference](../reference/truffle-commands.html#networks) for more information.

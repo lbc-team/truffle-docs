@@ -2,9 +2,9 @@
 
 ## 合约文件目录
 
-您的所有合约都位于项目的 `contracts/` 目录中。 由于合约是用[Solidity](https://learnblockchain.cn/docs/solidity/)编写的，所有包含合约的文件都将具有 `.sol` 文件扩展名。 相关的 Solidity [库](https://learnblockchain.cn/docs/solidity/contracts.html#libraries)也将有一个`.sol`扩展名。
+所有合约都位于项目的 `contracts/` 目录中。 由于合约是用[Solidity语言](https://learnblockchain.cn/docs/solidity/)编写的，所有包含合约的文件都将具有 `.sol` 文件扩展名。 相关的 Solidity [库](https://learnblockchain.cn/docs/solidity/contracts.html#libraries)也将有一个`.sol`扩展名。
 
-使用一个通过`truffle init`创建的空 Truffle [工程](../quickstart.md)会生成一个用于部署的`Migrations.sol` 文件。 如果您使用 [Truffle Box](https://truffleframework.com/boxes)，则会有多个文件。
+使用`truffle init`命令创建的空 Truffle [工程](../quickstart.md)会生成一个用于部署的`Migrations.sol` 合约文件。 如果我们使用 [Truffle Box](https://truffleframework.com/boxes) 来创建工程，则会有多个合约文件。
 
 
 ## 编译命令
@@ -15,7 +15,7 @@
 truffle compile
 ```
 
-首次运行时，将编译所有合约。 在后续运行中，Truffle将仅编译自上次编译以来有更改的合约。 如果您想覆盖此行为，可以使用 `--all` 选项运行上面的命令。
+首次运行时，将编译所有合约。 在后续运行中，Truffle将仅编译自上次编译以来有更改的合约。 如果我们想覆盖此行为，可以使用 `--all` 选项运行上面的命令。
 
 
 
@@ -27,12 +27,12 @@ truffle compile
 
 编译的目标文件 Artifacts 将放在 `build/contracts/` 目录中，相对于项目根目录（如果该目录不存在，将创建该目录。）
 
-这些 Artifacts 是Truffle内部工作的组成部分，它们在成功部署应用程序中起着重要作用。 **您不应编辑这些文件**，因为这些文件将被合约编译和部署覆盖。
+这些 Artifacts 是Truffle内部工作的组成部分，它们在成功部署应用程序中起着重要作用。 **我们不应编辑这些文件**，因为这些文件将被合约编译和部署覆盖。
 
 
 ## 引入合约依赖文件
 
-您可以使用Solidity的 [import](https://learnblockchain.cn/docs/solidity/layout-of-source-files.html#import) 命令声明合约依赖文件。 Truffle 将以正确的顺序编译合约，并确保将所有依赖文件发送给编译器。 可以通过两种方式指定依赖关系：
+我们可以使用Solidity的 [import](https://learnblockchain.cn/docs/solidity/layout-of-source-files.html#import) 命令声明合约依赖文件。 Truffle 将以正确的顺序编译合约，并确保将所有依赖文件发送给编译器。 可以通过两种方式指定依赖关系：
 
 ### 通过文件名导入依赖文件
 
