@@ -1,50 +1,63 @@
 # 用 EthPM 进行包管理
 
-EthPM is the new [Package Registry](https://www.ethpm.com/) for Ethereum. It follows the [ERC190 spec](https://github.com/ethereum/EIPs/issues/190) for publishing and consuming smart contract packages, and has gained wide support from many diverse Ethereum development tools. To show our support, we've integrated the Ethereum Package Registry directly into Truffle.
 
-## Installing a package
+EthPM 是以太坊的新[包管理库](https://www.ethpm.com/)。 它遵循[ERC190规范](https://github.com/ethereum/EIPs/issues/190)，用于发布和使用智能合约包，并获得了许多不同的以太坊开发工具的广泛支持。 为了表示支持，我们也将以太坊包管理库（Package Registry) 直接集成到 Truffle 中。
 
-Installing a package from EthPM is nearly as easy as installing a package via NPM. You can simply run the following command:
+
+
+## 安装软件包
+
+
+从EthPM安装软件包几乎与通过NPM安装软件包一样简单。 我们只需运行以下命令：
+
 
 ```
 $ truffle install <package name>
 ```
 
-You can also install a package at a specific version:
+我们还可以在特定版本上安装软件包：
 
 ```
 $ truffle install <package name>@<version>
 ```
 
-Like NPM, EthPM versions follow [semver](http://semver.org/). You can find a list of all available packages at [the Ethereum Package Registry](https://www.ethpm.com/registry).
 
-## Installing Dependencies
+与NPM一样，EthPM 版本遵循[semver](http://semver.org/)。 我们可以在[以太坊软件包管理库](https://www.ethpm.com/registry)中找到所有可用软件包的列表。
 
-Your project can define an `ethpm.json` file that among other things can pin your project to specific dependencies and versions. To install all dependencies listed in the `ethpm.json` file, run:
+
+## 安装依赖
+
+项目里可以定义一个 `ethpm.json` 文件，它可以指定项目依赖及对应的版本。 要安装 `ethpm.json` 文件中列出的所有依赖，可以运行：
+
 
 ```
 $ truffle install
 ```
 
-For more details on the `ethpm.json` file, see the [package configuration](/docs/getting_started/packages-ethpm#package-configuration) below.
+有关 `ethpm.json` 文件的更多详细信息，请参阅下面的[包配置](#package-configuration)。
 
-## Consuming installed contracts
+## 使用安装的合约
 
-Installed packages will be placed in the `installed_contracts` directory within your project folder. If no `installed_contracts` directory exists it'll be created for you. You should treat this folder like you treat the `node_modules` folder with NPM -- that is, you shouldn't edit the contents inside unless you know what you're doing. :)
 
-Installed packages can be consumed within your tests, migrations and solidity contract files by `import`'ing or `require`'ing that package and contract by name. For example, the following Solidity contract would import the `owned.sol` file from the `owned` package:
+已安装的软件包将放在项目文件夹中的 `installed_contracts` 目录中。 如果不存在`installed_contracts` 目录，则会为我们创建。 这个文件夹就像用 NPM 处理 `node_modules` 文件夹一样 - 也就是说，你不应该编辑里面的内容，除非确切的知道自己在做什么。:)
+
+安装的软件包可以在 测试、迁移、合约文件中 通过 `import` 或 `require` 及合约的名称来引入。
+例如，以下Solidity合约将从 `owned `包导入 `owned.sol` 文件：
+
 
 ```javascript
-pragma solidity ^0.4.2;
+pragma solidity ^0.5.0;
 
 import "owned/owned.sol";
 
-contract MyContract is owned {
+contract LBCContract is owned {
   // ...
 }
 ```
 
-Similarly, the following migration file would use the `ENS.sol` contract from the `ens` package:
+
+同样，以下迁移文件可以使用 `ens` 包中的 `ENS.sol` 合约：
+
 
 File: `./migrations/2_deploy_contracts.js`
 
@@ -53,34 +66,40 @@ var ENS = artifacts.require("ens/ENS");
 var MyContract = artifacts.require("MyContract");
 
 module.exports = function(deployer) {
-  // Only deploy ENS if there's not already an address already.
-  // i.e., don't deploy if we're using the canonical ENS address,
-  // but do deploy it if we're on a test network and ENS doesn't exist.
+
+// 如果ENS不存在时进行部署。
+// 如果我们在测试网络上并且ENS不存在，将进行部署。
+
   deployer.deploy(ENS, {overwrite: false}).then(function() {
     return deployer.deploy(MyContract, ENS.address);
   });
 };
 ```
 
-Note that in the migration above, we consume the `ens` package and deploy the ENS contract conditionally based on whether or not ENS already has an address set. This is a fancy trick provided to you by the [deployer](/docs/getting_started/migrations#deployer-deploy-contract-args-options-) that makes it much easier to write migrations dependent on the the existence of network artifacts. In this case, if we were running our migrations on the Ropsten network, this migration **wouldn't** deploy the `ENS` contract because (at the time of this writing) Ropsten is where the canonical `ENS` contract exists -- we wouldn't want to deploy our own. But if we were running our migrations against a different network, or a test network perhaps, then we'd want to deploy the `ENS` contract so that we have a dependency contract to work with.
+请注意，在上面的迁移中，我们使用 `ens` 包并根据ENS是否已有地址来有条件地部署ENS合约。 这是[deployer](https://learnblockchain.cn/docs/truffle/getting-started/running-migrations.html#deployer-deploy-contract-args-options)为我们提供的一种奇特技巧，可以更轻松地编写依赖于网络存在的迁移。
 
-## Publishing your own package
+在这种情况下，如果我们在Ropsten网络上运行迁移，则此迁移**不会**部署 `ENS` 合约，因为（在撰写本文时）Ropsten 网络已经部署了规范的 `ENS` 合约，我们不需要部署自己的。 但是，如果我们正在针对不同的网络或测试网络运行部署，那么我们希望部署 `ENS` 合约，以便我们可以使用依赖的合约。
 
-Publishing your own package is as straightforward as installing, but like NPM, requires a bit more configuration.
+
+## 发布自己的软件包
+
+发布我们自己的软件包与安装一样简单，像 NPM 一样，需要更多配置。
+
 
 ### Ropsten, Ropsten, Ropsten
 
-The Ethereum Package Registry currently exists on the Ropsten test network. To publish to the registry, we need to set up our own Ropsten configuration because we'll be making transactions that need to be signed.
+以太坊软件包管理库（Package Registry）目前存在于Ropsten测试网络中。 要发布自己的软件包，我们需要设置自己的Ropsten配置，因为需要用它签名交易。
 
-In this example, we'll use Infura for publishing packages along with the `truffle-hdwallet-provider` NPM module and a 12-word hd-wallet mnemonic that represents our Ethereum address on the Ropsten network. First, install the `truffle-hdwallet-provider` via NPM within your project directory:
+
+在这个例子中，我们将使用 Infura 来发布包，需要使用 `truffle-hdwallet-provider` 模块以及Ropsten网络账号的助记符。 首先，在项目目录中通过NPM安装 `truffle-hdwallet-provider` ：
+
 
 ```
 $ npm install truffle-hdwallet-provider --save
 ```
 
-Then edit your configuration to add the `ropsten` network using your 12-word mnemonic:
-
-File: `truffle.js`
+编辑配置文件 `truffle.js` ：
+File: 
 
 ```javascript
 var HDWalletProvider = require("truffle-hdwallet-provider");
@@ -103,11 +122,16 @@ module.exports = {
 };
 ```
 
-### Package configuration
+```eval_rst
+.. _Package configuration:
+```
 
-Like NPM, configuration options for EthPM go in a separate JSON file called `ethpm.json`. This file sits alongside your Truffle configuration and gives Truffle all the information it needs to publish your package. You can see a full list of available options in the [Configuration](/docs/advanced/configuration) section.
+### 包配置
 
-File: `ethpm.json`
+与NPM一样，EthPM的配置选项文件名为 `ethpm.json` 。 此文件和 Truffle 配置文件在一个目录下，它为Truffle提供发布包所需的所有信息。 我们可以在[配置](https://learnblockchain.cn/docs/truffle/reference/configuration.html)部分中查看所有的配置项。
+
+
+文件: `ethpm.json`
 
 ```javascript
 {
@@ -128,30 +152,35 @@ File: `ethpm.json`
 }
 ```
 
-### Command
+### 命令
 
-After you have your configuration settled, publishing is a snap:
+配置完成后，发布很简单：
 
 ```
 $ truffle publish
 ```
 
-You'll see output similar to that below, with confirmation that your package was published successfully.
+我们将看到与下面类似的输出，并确认包已成功发布。
+
 
 ```
 $ truffle publish
 Gathering contracts...
 Finding publishable artifacts...
-Uploading sources and publishing to registry...
+Uploading sources and publishing to registry...我们
 + adder@0.0.3
 ```
 
-### Before publishing
+### 在发布之前
 
-When using a network like the default `develop` network that's configured to match any Ethereum client (like [Ganache](/ganache) or Truffle Develop), you're bound to have network artifacts lying around that you don't want published. Before publishing your package, consider running the following command to remove any extraneous network artifacts:
+
+当我们的配置有有不想发布的 [artifacts](https://learnblockchain.cn/docs/truffle/getting-started/compiling-contracts.html#artifacts), 可以在发布之前运行：
+
 
 ```
 $ truffle networks --clean
 ```
 
-See the [command reference](/docs/advanced/commands#networks) for more information.
+这里可以参考更多 [命令](https://learnblockchain.cn/docs/truffle/reference/truffle-commands.html#networks) 使用。
+
+

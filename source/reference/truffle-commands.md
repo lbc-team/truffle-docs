@@ -204,6 +204,9 @@ Options:
 
 See the [Package Management with EthPM](../getting_started/packages-ethpm) section for more details.
 
+```eval_rst
+.. _migrate:
+```
 
 ### migrate
 
@@ -366,3 +369,5 @@ This command will initiate a watch for changes to contracts, application, and co
 <p class="alert alert-warning">
 **Alert**: This command is deprecated. Please use external tools to watch for filesystem changes and rerun tests.
 </p>
+
+
