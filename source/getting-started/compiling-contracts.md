@@ -29,6 +29,9 @@ truffle compile
 
 这些 Artifacts 是Truffle内部工作的组成部分，它们在成功部署应用程序中起着重要作用。 **我们不应编辑这些文件**，因为这些文件将被合约编译和部署覆盖。
 
+```eval_rst
+.. _dependencies:
+```
 
 ## 引入合约依赖文件
 

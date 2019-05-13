@@ -1,46 +1,53 @@
 # 用 NPM 进行包管理
 
-Truffle comes standard with `npm` integration, and is aware of the `node_modules` directory in your project if it exists. This means you can use and distribute contracts, dapps and Ethereum-enabled libraries via `npm`, making your code available to others and other's code available to you.
+Truffle 集成 `npm` ，并且知道项目中的  `node_modules`  目录（如果存在）。 这意味着我们可以通过  `npm`  来使用和分发合约、dapps、以太坊的合约库，使我们的代码可供其他人使用，也可以使用其他代码。
 
-## 包位置
+## 包文件布局
 
-Projects created with Truffle have a specific layout by default which enables them to be used as packages. This layout isn't required, but if used as a common convention -- or "de-facto standard" -- then distributing contracts and dapps through NPM will become much easier.
+使用 Truffle 创建的项目默认具有特定的目录结构，这使得它们可以作为包来使用。 虽然这种目录结构不是必需的，但如果作为通用约定（或“事实上的标准”），那么通过 NPM 分发合约和 dapp 会更加容易。
 
-The most important directories in a Truffle package are the following:
+Truffle 包中最重要的目录如下：
 
-* `/contracts`
-* `/build` (which includes `/build/contracts`, created by Truffle)
 
-The first directory is your contracts directory, which includes your raw Solidity contracts. The second directory is the build directory, and more specifically `/build/contracts`, which holds build artifacts in the form of `.json` files. Including raw contracts in your package will allow others to import those contracts within their own solidity code. Similarly, including your `.json` build artifacts in your package will allow others to seamlessly interact with your contracts from JavaScript, which can be used in dapps, scripts and migrations.
+* `/contracts` 
+* `/build` (包含通过Truffle创建的  `/build/contracts`)
+
+第一个目录是我们的合约目录，其中包含Solidity合约源文件，合约文件中允许导入其他的合约，也运行其他人导入这些合约。
+第二个目录是构建目录，更具体地说是 `/build/contracts` ，它以 `.json` 文件的形式保存构建工件（artifacts），构建的 `.json` 允许其他人使用 JavaScript 无缝地与我们的合约交互（可以dapps、脚本和迁移中使用）。
+
 
 ## 使用包
 
-When using a package within your own project, it is important to note that there are two places where you might be interested in using other's contract code: within your contracts and within your Javascript code (migrations and tests). The following provides an example of each case, and discusses techniques for making the most of other's contracts and build artifacts.
+在项目中使用包时，在使用其他合约代码时有两个地方需要注意：合约代码和 Javascript 代码（迁移文件和测试文件）。 后面为每种情况提供了示例，并讨论了利用其他合约和构建工件(artifacts)的技术。
 
 ### 安装
 
-For this example, we're going to use the [Example Truffle Library](https://github.com/ConsenSys/example-truffle-library), which provides a simple name registry that is deployed to the Morden test network. In order to use it as a dependency, we must first install it within our project through `npm`:
+
+在本例中，我们将使用[Truffle 示例库](https://github.com/ConsenSys/example-truffle-library)，它提供了一个部署到 Morden 测试网络的简单名称注册表。 为了将它作为依赖，我们必须首先通过 `npm` 在项目中安装它：
+
 
 ```
 $ cd my_project
 $ npm install example-truffle-library
 ```
 
-Note that the last command above downloads the package and places it in `my_project/node_modules` directory, which is important for the examples below. See the [npm documentation](https://docs.npmjs.com/) for help using `npm` to install packages.
+请注意，上面的第二个命令下载了包并将其放在 `my_project/node_modules`  目录中，这对于下面的示例很重要。使用  `npm` 进行可以参考 [npm 文档](https://docs.npmjs.com/) 。
 
 ### 在合约代码中使用包
 
-To use a package's contracts within your contracts, this can be as simple as Solidity's [import](http://solidity.readthedocs.io/en/develop/layout-of-source-files.html?#importing-other-source-files) statement. When your import path isn't [explicitly relative or absolute](/docs/getting_started/compile#dependencies), this signifies to Truffle that you're looking for a file from a specific named package. Consider this example using the Example Truffle Library mentioned above:
+要在合约中使用其他包的合约，可Solidity的[import声明](http://solidity.readthedocs.io/en/develop/layout-of-source-files.html?#importing-other-source-files)一样简单。 我们的导入路径不是[相对或绝对的](https://learnblockchain.cn/docs/truffle/getting_started/compiling-contracts.html#dependencies)，它表示正在寻找来自特定命名包的文件。 使用上面提到的示例库的示例为：
 
 ```
 import "example-truffle-library/contracts/SimpleNameRegistry.sol";
 ```
 
-Since the path didn't start with `./`, Truffle knows to look in your project's `node_modules` directory for the `example-truffle-library` folder. From there, it resolves the path to provide you the contract you requested.
+由于路径不是以 `./` 开头，因此 Truffle 知道在项目的 `node_modules` 目录中查找` example-truffle-library` 文件夹。它将为我们所需合约提供路径。
+
 
 ### 在JavaScript中使用包
 
-To interact with package's contracts within JavaScript code, you simply need to `require` that package's `.json` files, and then use the [truffle-contract](https://github.com/trufflesuite/truffle/tree/master/packages/truffle-contract) module to turn those into usable abstractions:
+要在 JavaScript 代码中与包的合约进行交互，我们只需要 `require` 包内的 `.json` 文件，然后使用[truffle-contract](https://github.com/trufflesuite/truffle/tree/master/packages/truffle-contract)模块将这些转换为可用的抽象：
+
 
 ```
 var contract = require("truffle-contract");
@@ -48,13 +55,15 @@ var data = require("example-truffle-library/build/contracts/SimpleNameRegistry.j
 var SimpleNameRegistry = contract(data);
 ```
 
-To use these abstractions, see the [Interacting With Your Contracts](/docs/getting_started/contracts) section for more details.
+要使用这些抽象，请参阅[与合约交互](https://learnblockchain.cn/docs/truffle/getting_started/interacting-with-your-contracts.html)部分以获取更多详细信息。
+
 
 ### 包的部署地址
 
-Sometimes you want your contracts to interact with the package's previously deployed contracts. Since the deployed addresses exist within the package's `.json` files, you must perform an extra step to get those addresses into your contracts. To do so, make your contract accept the address of the dependency contract, and then use migrations. The following is an example contract that exists within your project as well as an example migration:
+有时我们希望合约与包内先前部署的合约进行交互。 由于部署的地址存在于包的 `.json` 文件中，因此必须执行额外的步骤才能将这些地址放入合约中。 为此，请使合约接受依赖合约的地址，然后使用迁移。 以下是项目中存在依赖合约示例以及迁移示例：
 
-Contract: `MyContract.sol`
+
+合约文件: `MyContract.sol`
 
 ```javascript
 pragma solidity ^0.4.13;
@@ -69,7 +78,7 @@ contract MyContract {
     owner = msg.sender;
   }
 
-  // Simple example that uses the deployed registry from the package.
+  //使用了 已经部署的 registry 包
   function getModule(bytes32 name) returns (address) {
     return registry.names(name);
   }
@@ -84,7 +93,7 @@ contract MyContract {
 
 ```
 
-Migration: `3_hook_up_example_library.js`
+迁移文件: `3_hook_up_example_library.js` 
 
 ```javascript
 // Note that artifacts.require takes care of creating an abstraction for us.
