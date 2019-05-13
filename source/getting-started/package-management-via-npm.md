@@ -35,7 +35,7 @@ $ npm install example-truffle-library
 
 ### 在合约代码中使用包
 
-要在合约中使用其他包的合约，可Solidity的[import声明](http://solidity.readthedocs.io/en/develop/layout-of-source-files.html?#importing-other-source-files)一样简单。 我们的导入路径不是[相对或绝对的](https://learnblockchain.cn/docs/truffle/getting_started/compiling-contracts.html#dependencies)，它表示正在寻找来自特定命名包的文件。 使用上面提到的示例库的示例为：
+要在合约中使用其他包的合约，可Solidity的[import声明](http://solidity.readthedocs.io/en/develop/layout-of-source-files.html?#importing-other-source-files)一样简单。 我们的导入路径不是[相对或绝对的](https://learnblockchain.cn/docs/truffle/getting-started/compiling-contracts.html#dependencies)，它表示正在寻找来自特定命名包的文件。 使用上面提到的示例库的示例为：
 
 ```
 import "example-truffle-library/contracts/SimpleNameRegistry.sol";
@@ -55,7 +55,7 @@ var data = require("example-truffle-library/build/contracts/SimpleNameRegistry.j
 var SimpleNameRegistry = contract(data);
 ```
 
-要使用这些抽象，请参阅[与合约交互](https://learnblockchain.cn/docs/truffle/getting_started/interacting-with-your-contracts.html)部分以获取更多详细信息。
+要使用这些抽象，请参阅[与合约交互](https://learnblockchain.cn/docs/truffle/getting-started/interacting-with-your-contracts.html)部分以获取更多详细信息。
 
 
 ### 包的部署地址
