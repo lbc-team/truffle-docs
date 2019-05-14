@@ -19,10 +19,10 @@ truffle compile
 
 
 
-## 构建 Artifacts
+## 构建工件 Artifacts
 
  ```note::
-  译者注：Artifacts 主要是指编译的目标文件，因为中文中没有合适的对应词，保留英文。
+  译者注：Artifacts 主要是指编译的目标文件，因为中文中有时会使用”工件“，为了避免理解问题，大部分会保留英文词 Artifacts。
  ```
 
 编译的目标文件 Artifacts 将放在 `build/contracts/` 目录中，相对于项目根目录（如果该目录不存在，将创建该目录。）
