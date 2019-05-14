@@ -5,11 +5,11 @@ It is highly recommended you read our [tutorial on building a dapp on Quorum](ht
 
 Both the tutorial and this page have been updated for *at least* version `5.0.9` of `truffle`.
 
-## Known Issues
+## 已知问题
 - Quorum support was completely broken in version `5.0.0`, and basic support was restored in `5.0.9`. Make sure you have at least `5.0.9`.
 - Privacy support (via `privateFor`) has been restored in `5.0.14`. You must use at least `5.0.14` or `v4` (`npm i -g truffle@v4`) to use privacy features.
 
-## Configuration
+## 配置
 To use Quorum, you must modify your network in `truffle-config.js` to include a parameter `type` set to `"quorum"`. See the example below.
 
 ```javascript

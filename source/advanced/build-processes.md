@@ -1,12 +1,14 @@
-# Build Processes
+# 构建过程
 
-<p class="alert alert-warning">
-**Alert**: The `build` command and this approach is being deprecated. Please use third-party build tools like webpack or grunt, or see our [Truffle Boxes](https://truffleframework.com/boxes) for an example.
-</p>
+
+ 
+ ```warning::
+    `build` 命令已被弃用。 请使用第三方构建工具（如webpack或grunt），或参考示例 `Truffle Boxes <https://truffleframework.com/boxes>`_ 。
+ ```
 
 In order to provide tight integration with Truffle for those that desire it, Truffle allows you to specify a custom build pipeline meant to bootstrap and configure your application. Truffle provides three methods of integration, described below.
 
-## Running an external command
+## 运行外部命令
 
 If you'd like Truffle to run an external command whenever it triggers a build, simply include that option as a string within your project configuration, like so:
 

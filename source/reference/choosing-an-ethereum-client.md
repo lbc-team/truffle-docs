@@ -2,13 +2,13 @@
 
 There are many Ethereum clients to choose from. We recommend different clients depending on whether you are developing or deploying.
 
-## When developing
+## 开发过程中
 
 ### Ganache
 
-We recommend [Ganache](/ganache), a personal blockchain for Ethereum development that runs on your desktop. Part of the Truffle Suite, Ganache simplifies dapp development by placing your contracts and transactions front and center. Using Ganache you can quickly see how your application affects the blockchain, and introspect details like your accounts, balances, contract creations and gas costs. You can also fine tune Ganache's advanced mining controls to better suit your needs. Ganache is available for Windows, Mac and Linux, and you can [download it here](/ganache).
+We recommend [Ganache](https://truffleframework.com/ganache), a personal blockchain for Ethereum development that runs on your desktop. Part of the Truffle Suite, Ganache simplifies dapp development by placing your contracts and transactions front and center. Using Ganache you can quickly see how your application affects the blockchain, and introspect details like your accounts, balances, contract creations and gas costs. You can also fine tune Ganache's advanced mining controls to better suit your needs. Ganache is available for Windows, Mac and Linux, and you can [download it here](https://truffleframework.com/ganache).
 
-Ganache, when launched, runs on `http://127.0.0.1:7545`. It will display the first 10 accounts and the mnemonic used to create those accounts. ([Read more about account mnemonics](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki).) The mnemonic will persist across restarts of Ganache, though it can be changed to be randomly generated. You can also [input your own](/docs/ganache/using).
+Ganache, when launched, runs on `http://127.0.0.1:7545`. It will display the first 10 accounts and the mnemonic used to create those accounts. ([Read more about account mnemonics](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki).) The mnemonic will persist across restarts of Ganache, though it can be changed to be randomly generated. You can also [input your own](https://truffleframework.com/docs/ganache/using).
 
 <p class="alert alert-danger">
 **Warning**: Do not use this mnemonic on the main Ethereum network (mainnet).
@@ -37,7 +37,7 @@ To read more about interacting with the console, please see the [Using the Conso
 Ganache also has a command-line interface for those who aren't working from a graphical environment. Great for automated testing and continuous integration environments, Ganache CLI runs headless and can be configured to serve all your development needs. Ganache CLI processes transactions instantly instead of waiting for the default block time, so you can test that your code works quickly. It also tells you immediately when your smart contracts run into errors, and integrates directly with Truffle to reduce test runtime up to 90% compared to other clients. [Learn more about Ganache CLI](https://github.com/trufflesuite/ganache-cli/).
 
 
-## Deploying to live networks
+## 部署到线上网络
 
 There are many official and unofficial Ethereum clients available for you to use. The following is a short list:
 
@@ -48,6 +48,6 @@ There are many official and unofficial Ethereum clients available for you to use
 
 These are full client implementations that include mining, networking, blocks and transaction processing. You should use these clients after you've sufficiently tested your dapp with Ganache or Truffle Develop and you're ready to deploy to your desired Ethereum network.
 
-## Deploying to private networks
+## 部署到私有网络
 
 Private networks utilize the same technology as with live networks, but with a different configuration. So you can configure any of the Ethereum clients mentioned above to run a private network, and deploy to it in exactly the same way.

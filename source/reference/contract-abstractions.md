@@ -2,7 +2,7 @@
 
 Truffle provides contract abstractions for interacting with your contracts.  Skip ahead to the [api section](../reference/contract-abstractions#api) for a list of contract methods.
 
-### Usage
+## 使用方法
 
 To obtain a contract abstraction you can require it with the contract name from the `artifacts` object.  Outside of the console this is an object available in migration files, tests, and exec scripts.
 You would require your contract as follows:

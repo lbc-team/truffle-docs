@@ -132,7 +132,7 @@ Additionally, both Truffle Develop and the console have the following features:
 * After each command (such as `migrate --reset`) your contracts are reprovisioned so you can start using the newly assigned addresses and binaries immediately.
 * The `web3` library is made available and is set to connect to your Ethereum client.
 
-### Commands available
+### 可用命令
 
 * `build`
 * `compile`

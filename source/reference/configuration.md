@@ -1,6 +1,6 @@
 # 配置文件
 
-## Location
+## 配置文件位置
 
 Your configuration file is called `truffle-config.js` and is located at the root of your project directory. This file is a Javascript file and can execute any code necessary to create your configuration. It must export an object representing your project configuration like the example below.
 
@@ -19,7 +19,11 @@ module.exports = {
 The default configuration ships with configuration for a single development network, running on `127.0.0.1:8545`. There are many other configuration options, detailed below.
 
 
-### Resolving naming conflicts on Windows
+```eval_rst
+.. _Resolving naming conflicts on Windows:
+```
+
+### 解决 Windows 命令名冲突
 
 <p class="alert alert-warning">
 **Note**: This only applies to Truffle version 4 and below.
@@ -38,13 +42,18 @@ Any of the following solutions will remedy this issue:
 * Use [Windows PowerShell](https://docs.microsoft.com/en-us/powershell/) or [Git BASH](https://git-for-windows.github.io/), as these shells do not have this conflict.
 
 
-## General options
+## 常用选项
 
-### build
+### 构建 build （弃用）
+
 
 Build configuration of your application, if your application requires tight integration with Truffle. Most users likely will not need to configure this option. See the [Build Processes](../advanced/build-processes) section for more details.
 
-### networks
+```eval_rst
+.. _networks:
+```
+
+### 网络 networks
 
 Specifies which networks are available for deployment during migrations, as well as specific transaction parameters when interacting with each network (such as gas price, from address, etc.). When compiling and running migrations on a specific network, contract artifacts will be saved and recorded for later use. When your contract abstractions detect that your Ethereum client is connected to a specific network, they'll use the contract artifacts associated that network to simplify app deployment. Networks are identified through Ethereum's `net_version` RPC call, as well as blockchain URIs.
 
@@ -93,7 +102,7 @@ For each network, if unspecified, transaction options will default to the follow
 
 For each network, you can specify either `host` / `port` or `provider`, but not both. If you need an HTTP provider, we recommend using `host` and `port`, while if you need a custom provider such as `HDWalletProvider`, you must use `provider`.
 
-#### Providers
+#### 提供者 Providers
 
 The following network list consists of a local test network and an Infura-hosted Ropsten network, both provided by HDWalletProvider. Make sure you wrap `truffle-hdwallet` providers in a function closure as shown below to ensure that only one network is ever connected at a time.
 
@@ -116,7 +125,7 @@ networks: {
 
 If you specify `host` and `port` instead of `provider`, Truffle will create its own default HTTP provider using that host and port, and no minimal network connection will be opened, so there is no need to do the function wrapping workaround. That said, you wouldn't be able to use a custom provider in this case.
 
-### contracts_directory
+### 指定合约目录
 
 The default directory for uncompiled contracts is `./contracts` relative to the project root. If you wish to keep your contracts in a different directory you may specify a `contracts_directory` property.
 
@@ -139,7 +148,7 @@ module.exports = {
 
 **Note**: In addition to specifying a relative path, you can also use globs/regular expressions to selectively compile contracts.
 
-### contracts_build_directory
+### 指定合约构建生成目录
 
 The default output directory for compiled contracts is `./build/contracts` relative to the project root. This can be changed with the `contracts_build_directory` key.
 
@@ -189,7 +198,7 @@ mocha: {
 }
 ```
 
-## Compiler configuration
+## 指定编译器 
 
 In the `compilers` object you can specify settings related to the compilers used by Truffle.
 
@@ -225,7 +234,7 @@ module.exports = {
 ```
 For more information, please see the Solidity documentation on [Compiler Input and Output JSON Description](http://solidity.readthedocs.io/en/develop/using-the-compiler.html#compiler-input-and-output-json-description).
 
-### external compilers
+### 使用外部编译器
 
 For more advanced use cases with artifact creation you can use the external compilers configuration.
 You can use this feature by adding a `compilers.external` object to your Truffle config:
@@ -310,7 +319,12 @@ module.exports = {
 ```
 Specify `properties` and/or `fileProperties`, and Truffle will look for those values when building the artifacts.
 
-## plugins
+
+```eval_rst
+.. _plugins:
+```
+
+## 插件 plugins
 
 <p class="alert alert-warning">
 **Note**: This feature is new and still in a barebones state. Please let us
@@ -325,7 +339,7 @@ workflow commands. For more information, see [Third-Party Plugin Commands](../ge
 
 
 
-## EthPM configuration
+## EthPM 配置
 
 This configuration applies to the optional `ethpm.json` file that exists alongside your `truffle.js` configuration file.
 

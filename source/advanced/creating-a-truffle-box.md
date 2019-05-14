@@ -1,6 +1,6 @@
 # 创建 Truffle Box
 
-## Creating a box
+## 创建 box
 
 To create a Truffle Box you'll need a few things:
 * A GitHub repository
@@ -13,7 +13,7 @@ If you're **starting from scratch**, we've created a [blueprint box](https://tru
 
 If you're using **an existing project**, [download the files here](https://truffleframework.com/files/truffle-box-essentials.zip) and extract them into your project.
 
-## Configuration file
+## 配置文件
 
 All truffle boxes include a configuration file, `truffle-box.json`. This file has three attributes: `ignore`, `commands`, and `hooks`.
 
@@ -55,7 +55,7 @@ An object containing console commands to execute once unboxed. Since we're worki
 }
 ```
 
-## Images
+## 图片
 
 The large box image is a 512px square with 32px of padding on each side.
 

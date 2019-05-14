@@ -10,7 +10,7 @@ To run an external script, perform the following:
 $ truffle exec <path/to/file.js>
 ```
 
-## File structure
+## 文件结构
 
 In order for external scripts to be run correctly, Truffle expects them to export a function that takes a single parameter as a callback:
 
