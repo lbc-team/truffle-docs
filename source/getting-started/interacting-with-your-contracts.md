@@ -41,7 +41,7 @@
 
 
 ```javascript
-pragma solidity ^0.4.2;
+pragma solidity >=0.4.25 <0.6.0;
 
 import "./ConvertLib.sol";
 
@@ -55,11 +55,11 @@ contract MetaCoin {
 
 	event Transfer(address indexed _from, address indexed _to, uint256 _value);
 
-	function MetaCoin() {
+	constructor() public {
 		balances[tx.origin] = 10000;
 	}
 
-	function sendCoin(address receiver, uint amount) returns(bool sufficient) {
+	function sendCoin(address receiver, uint amount) public returns(bool sufficient) {
 		if (balances[msg.sender] < amount) return false;
 		balances[msg.sender] -= amount;
 		balances[receiver] += amount;
@@ -67,11 +67,11 @@ contract MetaCoin {
 		return true;
 	}
 
-	function getBalanceInEth(address addr) returns(uint){
+	function getBalanceInEth(address addr) public view returns(uint){
 		return ConvertLib.convert(getBalance(addr),2);
 	}
 
-	function getBalance(address addr) returns(uint) {
+	function getBalance(address addr) public view returns(uint) {
 		return balances[addr];
 	}
 }
@@ -138,10 +138,10 @@ truffle(develop)> balance.toNumber()
 ```
 
 
-调用会得到返回值。 注意，由于以太坊网络可以处理非常大的数字，我们会得到一个[BigNumber](https://github.com/MikeMcl/bignumber.js/)对象，然后将其转换为数字。
+调用会得到返回值。 注意，由于以太坊网络可以处理非常大的数字，我们会得到一个[BigNum](https://github.com/indutny/bn.js/) 对象，然后将其转换为数字。
 
  ```note::
-  这里返回值转换为数字，因为在此示例中数字很小。 但是如果尝试转换大于 Javascript 支持的最大整数的 BigNumber，可能会遇到错误或无法预期的行为。
+  这里返回值转换为数字，因为在此示例中数字很小。 但是如果尝试转换大于 Javascript 支持的最大整数的 BigNum（简写：BN），可能会遇到错误或无法预期的行为。
  ```
 
 

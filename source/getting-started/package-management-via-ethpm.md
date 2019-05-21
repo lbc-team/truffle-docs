@@ -22,7 +22,8 @@ $ truffle install <package name>@<version>
 ```
 
 
-与NPM一样，EthPM 版本遵循[semver](http://semver.org/)。 我们可以在[以太坊软件包管理库](https://www.ethpm.com/registry)中找到所有可用软件包的列表。
+与NPM一样，EthPM 版本遵循[semver](http://semver.org/)。 我们可以在[以太坊软件包管理库](http://explorer.ethpm.com/))中找到所有可用软件包的列表。
+
 
 
 ## 安装依赖
@@ -115,7 +116,8 @@ module.exports = {
       network_id: "*" // Match any network id
     },
     ropsten: {
-      provider: new HDWalletProvider(mnemonic, "https://ropsten.infura.io/"),
+      provider: () => 
+          new HDWalletProvider(mnemonic, "https://ropsten.infura.io/v3/YOUR-PROJECT-ID"),
       network_id: 3 // official id of the ropsten network
     }
   }

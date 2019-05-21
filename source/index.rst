@@ -3,6 +3,11 @@
 
 本文档是基于 `Truffle 官方最新文档 <https://truffleframework.com/docs>`_ 由 `深入浅出区块链  <https://learnblockchain.cn/>`_ 社区成员整理、翻译及校队，我们虽力求准确，但如您发现纰漏，欢迎到 `GitHub 提Issues  <https://github.com/lbc-team/truffle-docs>`_ 指正。
 
+
+.. warning::
+   最新文档同步时间为2019/05/21。
+
+
 尊重汗水，如需转载请联系微信：xlbxiong 获取授权。
 
 Truffle 概述

@@ -2,7 +2,7 @@
 
 ## 配置文件位置
 
-Your configuration file is called `truffle-config.js` and is located at the root of your project directory. This file is a Javascript file and can execute any code necessary to create your configuration. It must export an object representing your project configuration like the example below.
+配置文件名为 `truffle-config.js` ，位于项目目录的根目录下。 它是Javascript文件，可以执行创建配置所需的任何代码。 它必须导出表示项目配置的对象，如下例所示：
 
 ```javascript
 module.exports = {
@@ -10,13 +10,13 @@ module.exports = {
     development: {
       host: "127.0.0.1",
       port: 8545,
-      network_id: "*" // Match any network id
+      network_id: "*" // 匹配任何网络
     }
   }
 };
 ```
 
-The default configuration ships with configuration for a single development network, running on `127.0.0.1:8545`. There are many other configuration options, detailed below.
+默认配置附带开发网络的配置，运行在 `127.0.0.1:8545` 上。 还有许多其他配置选项，详情如下。
 
 
 ```eval_rst
@@ -25,29 +25,26 @@ The default configuration ships with configuration for a single development netw
 
 ### 解决 Windows 命令名冲突
 
-<p class="alert alert-warning">
-**Note**: This only applies to Truffle version 4 and below.
-</p>
+
+ ```warning::
+   仅适用于Truffle 4 及以下版本。
+ ```
+
+在Windows上使用命令提示符时，默认配置文件名可能会导致与 `truffle` 可执行文件冲突，因此**我们可能无法在现有项目上正确运行Truffle命令**。
 
 
-When using the Command Prompt on Windows, the default configuration file name can cause a conflict with the `truffle` executable, and so **you may not be able to run Truffle commands properly on existing projects**.
-
-This is because of the way that command precedence works on the Command Prompt. The `truffle.cmd` executable is on the path as part of the npm package, but the `truffle.js` configuration file is in the actual directory where the `truffle` command is run. Because `.js` is an acceptable executable extension by default, `truffle.js` takes precedence over `truffle.cmd`, causing unexpected results.
-
-Any of the following solutions will remedy this issue:
-
-* Call the executable file explicitly using its `.cmd` extension (`truffle.cmd compile`)
-* Edit the system `PATHEXT` environment variable and remove `.JS;` from the list of executable extensions
-* Rename `truffle.js` to something else (`truffle-config.js`)
-* Use [Windows PowerShell](https://docs.microsoft.com/en-us/powershell/) or [Git BASH](https://git-for-windows.github.io/), as these shells do not have this conflict.
+这是因为命令优先级在命令提示符上的工作方式。 `truffle.cmd` 可执行文件作为 npm 包的路径上，但 `truffle.js` 配置文件位于运行 `truffle` 命令的实际目录中。 而 `.js` 是默认的可接受的可执行扩展名，`truffle.js` 优先于 `truffle.cmd` ，导致意外的结果。
 
 
-## 常用选项
+以下任何解决方案都可以解决此问题：
 
-### 构建 build （弃用）
+* 使用 `.cmd` 扩展名（ `truffle.cmd compile` ）显式调用可执行文件。
+* 编辑系统 `PATHEXT` 环境变量并从可执行扩展列表中删除 `.JS;` 。
+* 将 `truffle.js` 重命名为其他东西（`truffle-config.js`）。
+* 使用 [Windows PowerShell](https://docs.microsoft.com/en-us/powershell/) 或 [Git BASH](https://git-for-windows.github.io/)， 或不会引起冲突的 shell .
 
 
-Build configuration of your application, if your application requires tight integration with Truffle. Most users likely will not need to configure this option. See the [Build Processes](../advanced/build-processes) section for more details.
+## 常用配置选项
 
 ```eval_rst
 .. _networks:
@@ -55,62 +52,68 @@ Build configuration of your application, if your application requires tight inte
 
 ### 网络 networks
 
-Specifies which networks are available for deployment during migrations, as well as specific transaction parameters when interacting with each network (such as gas price, from address, etc.). When compiling and running migrations on a specific network, contract artifacts will be saved and recorded for later use. When your contract abstractions detect that your Ethereum client is connected to a specific network, they'll use the contract artifacts associated that network to simplify app deployment. Networks are identified through Ethereum's `net_version` RPC call, as well as blockchain URIs.
+指定部署网络，以及与每个网络交互时的特定交易参数（例如，gas价格，账号地址等）。 在指定网络上进行编译和部署时，将保存并记录合约工件（artifacts）以供以后使用。
+当合约抽象检测到我们的以太坊客户端连接到指定网络时，他们将使用与该网络相关联的合约工件（artifacts）来简化应用程序部署。 网络是通过以太坊的 `net_version`  RPC调用以及区块链URI来识别。
 
-The `networks` object, shown below, is keyed by a network name and contains a corresponding object that defines the parameters of the network. The `networks` option is required, as if you have no network configuration, Truffle will not be able to deploy your contracts. The default network configuration provided by `truffle init` gives you a development network that matches any network it connects to -- this is useful during development, but not suitable for production deployments. To configure Truffle to connect to other networks, simply add more named networks and specify the corresponding network id.
+如下所示，`networks` 对象由网络名称作为键，并包含定义相应网络参数的对象。 
+ `networks` 选项是必须项，如果没有网络配置，Truffle将无法部署我们的合约。 `truffle init` 提供的默认网络配置为我们提供了一个与其连接相匹配的开发网络 - 开发过程中非常有用，但不适合生产部署。 
+ 要将Truffle配置连接到其他网络，就需添加更多命名网络（named networks）并指定相应的网络ID。
 
-The network name is used for user interface purposes, such as when running your migrations on a specific network:
+
+网络名称可用于提示用户，例如它特定网络上运行迁移：
+
 
 ```bash
 $ truffle migrate --network live
 ```
 
-Example:
+如:
 
 ```javascript
 networks: {
   development: {
     host: "127.0.0.1",
     port: 8545,
-    network_id: "*", // match any network
+    network_id: "*", // 匹配任何网络
     websockets: true
   },
   live: {
-    host: "178.25.19.88", // Random IP for example purposes (do not use)
+    host: "178.25.19.88", // 用于示例目的的随机IP（不要使用）
     port: 80,
-    network_id: 1,        // Ethereum public network
-    // optional config values:
+    network_id: 1,        // 以太坊主网
+    // 可选配置:
     // gas
     // gasPrice
-    // from - default address to use for any transaction Truffle makes during migrations
-    // provider - web3 provider instance Truffle should use to talk to the Ethereum network.
-    //          - function that returns a web3 provider instance (see below.)
-    //          - if specified, host and port are ignored.
-    // skipDryRun: - true if you don't want to test run the migration locally before the actual migration (default is false)
-    // timeoutBlocks: - if a transaction is not mined, keep waiting for this number of blocks (default is 50)
+    // from - Truffle 在进行交易是的默认发送地址
+    // provider -  Truffle 用来连接以太坊网络的 web3 provider 实例
+    //          - 如果是一个函数，需要返回 web3 provider 实例 (参考下文)
+    //          - 如果指定了provider， host 和 port 或忽略。
+    // skipDryRun: - 如果不想在实际迁移之前在本地测试运行迁移，则为true（默认为false）
+    // timeoutBlocks: - 如果没有交易没有挖出，保持等待的区块数（默认为50）
   }
 }
 ```
 
-For each network, if unspecified, transaction options will default to the following values:
+不管哪个网络，如果未指定交易选项，则将使用以下默认值：
 
-* `gas`: Gas limit used for deploys. Default is `4712388`.
-* `gasPrice`: Gas price used for deploys. Default is `100000000000` (100 Shannon).
-* `from`: From address used during migrations. Defaults to the first available account provided by your Ethereum client.
-* `provider`: Default web3 provider using `host` and `port` options: `new Web3.providers.HttpProvider("http://<host>:<port>")`
-* `websockets`: You will need this enabled to use the `confirmations` listener or to hear Events using `.on` or `.once`.  Default is `false`.
+* `gas`: 指定部署的 gas limit。 默认为 `4712388`。
+* `gasPrice`: 指定部署的 gas价格。 默认为 `100000000000`（100香农）。
+* `from`: 部署时使用的账号地址。 默认为我们的以太坊客户端提供的第一个可用帐户。
+* `provider`: 默认web3提供者使用 `host` 和 `port` 指定，如 `new Web3.providers.HttpProvider("http://<host>:<port>")` 
+* `websockets`: 我们需要启用此功能才能使用 `confirmmations` 监听器或使用 `.on` 或 `.once` 监听事件。 默认为 `false` 。
 
-For each network, you can specify either `host` / `port` or `provider`, but not both. If you need an HTTP provider, we recommend using `host` and `port`, while if you need a custom provider such as `HDWalletProvider`, you must use `provider`.
+对于每个网络，我们可以指定 `host` / `port` 或 `provider` ，但不能同时指定两者。 如果我们需要 HTTP 提供者(Provider)，我们建议使用 `host` 和 `port` ，而如果我们需要自定义提供者(Provider)，如`HDWalletProvider`，则必须使用 `provider` 。
 
 #### 提供者 Providers
 
-The following network list consists of a local test network and an Infura-hosted Ropsten network, both provided by HDWalletProvider. Make sure you wrap `truffle-hdwallet` providers in a function closure as shown below to ensure that only one network is ever connected at a time.
+以下网络列表由本地测试网络和 Infura 托管的 Ropsten 网络组成，两者均由 HDWalletProvider 提供。 确保在函数闭包中包装(wrap) `truffle-hdwallet` 提供者(Provider)，如下所示，以确保一次只连接一个网络。
+
 
 ```javascript
 networks: {
   ropsten: {
     provider: function() {
-      return new HDWalletProvider(mnemonic, "https://ropsten.infura.io/");
+       return new HDWalletProvider(mnemonic, "https://ropsten.infura.io/v3/YOUR-PROJECT-ID");
     },
     network_id: '3',
   },
@@ -123,15 +126,15 @@ networks: {
 }
 ```
 
-If you specify `host` and `port` instead of `provider`, Truffle will create its own default HTTP provider using that host and port, and no minimal network connection will be opened, so there is no need to do the function wrapping workaround. That said, you wouldn't be able to use a custom provider in this case.
+如果指定 `host` 和 `port` 而不是 `provider` ，Truffle将使用该主机和端口创建自己的默认 HTTP 提供者(Provider)，在这种情况下，我们将无法使用自定义提供者(Provider)。
 
 ### 指定合约目录
 
-The default directory for uncompiled contracts is `./contracts` relative to the project root. If you wish to keep your contracts in a different directory you may specify a `contracts_directory` property.
+默认(未编译合约)目录的是位于项目根目录的 `./contacts` 。 如果我们希望将合约保存在不同的目录中，则可以指定 `contracts_directory` 属性。
 
-Example:
 
-To have Truffle find contracts in `./allMyStuff/someStuff/theContractFolder` (recursively) at compile time:
+例如，让Truffle在编译时在 `./allMyStuff/someStuff/theContractFolder`（递归）文件中查找合约：
+
 
 ```javascript
 module.exports = {
@@ -146,15 +149,16 @@ module.exports = {
 };
 ```
 
-**Note**: In addition to specifying a relative path, you can also use globs/regular expressions to selectively compile contracts.
+
+```note::
+   除了指定相对路径外，还可以使用 globs/regular 表达式来有选择地编译合约。
+```
 
 ### 指定合约构建生成目录
 
-The default output directory for compiled contracts is `./build/contracts` relative to the project root. This can be changed with the `contracts_build_directory` key.
+编译合约的默认输出目录是相对于项目根目录的 `./build/contracts` 。 这可以使用 `contracts_build_directory` 属性进行更改。
 
-Examples:
-
-To place the built contract artifacts in `./output/contracts`:
+例如，将构建的合约工件（artifacts）放在 `./output/contracts` 中：
 
 ```javascript
 module.exports = {
@@ -169,7 +173,7 @@ module.exports = {
 };
 ```
 
-The built contract artifacts do not need to be inside the project root:
+构建的合约工件（artifacts）不需要位于项目根目录中：
 
 ```javascript
 module.exports = {
@@ -184,13 +188,34 @@ module.exports = {
 };
 ```
 
-Absolute paths will also work. This is not recommended though, as an absolute path may not exist when compiled on another system. If you use absolute paths on Windows, make sure to use double backslashes for paths (example: `C:\\Users\\Username\\output`).
+绝对路径也可以，但是不建议这样做，因为在另一个系统上编译时可能不存在绝对路径。 如果在Windows上使用绝对路径，请确保对路径使用双反斜杠（例如：`C:\\Users\\Username\\output`）。
+
+
+### 迁移文件目录
+
+默认迁移目录是项目根目录下的 `./migrations` 文件夹。 可以使用 `migrations_directory` 更改此设置。
+
+如：
+
+```javascript
+module.exports = {
+  migrations_directory: "./allMyStuff/someStuff/theMigrationsFolder",
+  networks: {
+    development: {
+      host: "127.0.0.1",
+      port: 8545,
+      network_id: "*",
+    }
+  }
+};
+```
 
 ### mocha
 
-Configuration options for the [MochaJS](http://mochajs.org/) testing framework. This configuration expects an object as detailed in Mocha's [documentation](https://github.com/mochajs/mocha/wiki/Using-mocha-programmatically#set-options).
+[MochaJS](http://mochajs.org/) 测试框架的配置选项。 此配置需要一个对象，详见Mocha的[文档](https://github.com/mochajs/mocha/wiki/Using-mocha-programmatically#set-options)。
 
-Example:
+
+例如:
 
 ```javascript
 mocha: {
@@ -200,44 +225,47 @@ mocha: {
 
 ## 指定编译器 
 
-In the `compilers` object you can specify settings related to the compilers used by Truffle.
+在 `compilers` 对象中，我们可以指定与Truffle使用的编译器相关的设置。
 
 ### solc
 
-Solidity compiler settings. Supports optimizer settings for `solc`.
+Solidity编译器设置， 支持 `solc` 的优化器（optimizer）设置。
 
-You may specify...
-+ any solc-js version listed at [solc-bin](http://solc-bin.ethereum.org/bin/list.json). Specify the one you want and Truffle will get it for you.
-+ a natively compiled solc binary (you'll need to install this yourself, links to help below).
-+ a dockerized solc from one of images published [here](https://hub.docker.com/r/ethereum/solc/tags/).
-+ a path to a locally available solc
+可以指定...
++ [solc-bin](http://solc-bin.ethereum.org/bin/list.json) 上列出的所有的 solc-js 版本，需要的话，可以指定一个，Truffle 会自动获取它。
++ 一个原生编译的 solc （需要自己安装，下面的链接帮助）。
++ [这里](https://hub.docker.com/r/ethereum/solc/tags/)有发布的docker竞相的（dockerized ）solc 。
++ 本地可用的 solc 路径
 
-Truffle config example:
+
+Truffle 配置示例:
 
 ```javascript
 module.exports = {
   compilers: {
     solc: {
-      version: <string>, // A version or constraint - Ex. "^0.5.0"
-                         // Can also be set to "native" to use a native solc
-      docker: <boolean>, // Use a version obtained through docker
+      version: <string>, // 版本号或约束字符串 - 如： "^0.5.0"
+                         // 也可以指定为 "native" ，表示使用 native solc
+      docker: <boolean>, // 使用通过 docker 获得的版本
       settings: {
         optimizer: {
           enabled: <boolean>,
-          runs: <number>   // Optimize for how many times you intend to run the code
+          runs: <number>   // 优化次数
         }
-        evmVersion: <string> // Default: "byzantium"
+        evmVersion: <string> // 默认: "byzantium"
       }
     }
   }
 }
 ```
-For more information, please see the Solidity documentation on [Compiler Input and Output JSON Description](http://solidity.readthedocs.io/en/develop/using-the-compiler.html#compiler-input-and-output-json-description).
+
+有关详细信息，请参阅[Solidity文档 - 编译器输入输出JSON描述](https://learnblockchain.cn/docs/solidity/using-the-compiler.html#json).
 
 ### 使用外部编译器
 
-For more advanced use cases with artifact creation you can use the external compilers configuration.
-You can use this feature by adding a `compilers.external` object to your Truffle config:
+如果要使用创建工件的更高级用法，可以使用外部编译器配置。
+可以通过在Truffle配置中添加 `compilers.external` 对象来使用此功能：
+
 
 ```javascript
 module.exports = {
@@ -245,19 +273,21 @@ module.exports = {
     external: {
       command: "./compile-contracts",
       targets: [{
-        /* compilation output */
+        /* 编译输出 */
       }]
     }
   }
 }
 ```
 
-When you run truffle compile, Truffle will run the configured command and look for contract artifacts specified by targets.
 
-This new configuration supports a couple of main use cases:
+当我们运行 truffle compile 时，Truffle 将运行已配置的命令并查找 targets 指定的合约工件(artifacts)。
 
-+ Your compilation command outputs Truffle JSON artifacts directly.
-If your compilation command generates artifacts directly, or generates output that contains all the information for an artifact, configure a target as follows:
+这个配置支持的几个主要用例：
+
++ 编译命令可直接输出 Truffle JSON 工件（artifacts）。
+如果编译命令能直接生成工件（artifacts），或生成包含工件的所有信息的输出，请按如下方式配置目标（target）：
+
 
 ```javascript
 module.exports = {
@@ -272,10 +302,11 @@ module.exports = {
 }
 ```
 
-Truffle will execute your script, then expand the glob (*) and find all .json files in the listed path and copy those over as artifacts in the build/contracts/ directory.
+Truffle 将执行我们的脚本，然后展开glob（*）并查找列出的路径中的所有.json文件，并将它们作为工件复制到 build/contracts/ 目录中。
 
-+ Your compilation command outputs individual parts of an artifact, and you want Truffle to generate the artifacts for you.
-The above use case might not be sufficient for all use cases. You can configure your target to run an arbitrary post-processing command:
++ 编译命令输出工件的各个部分，我们希望Truffle 生成工件（artifacts）。
+上述用例可能不适用于所有用例。 我们可以将 target 配置为运行“后处理命令”，如：
+
 
 ```javascript
 module.exports = {
@@ -291,11 +322,11 @@ module.exports = {
 }
 ```
 
-This will run ./process-artifact for each matched .json file, piping the contents of that file as stdin. Your ./process-artifact command is then expected to output a complete Truffle artifact as stdout.
+这将为每个匹配的 .json 文件运行 ./process-artifact ，该文件的内容作为 stdin 管道传输。 然后 ./process-artifact 命令（期望）输出一个完整的 Truffle 工件（artifact）作为 stdout。
 
-Want to provide the path as a filename instead? Add `stdin: false` to your target configuration.
+如果想要提供路径代替文件名？ 在 taget 配置中添加 `stdin: false`。
 
-+ You can also specify the individual properties of your contracts and have Truffle generate the artifacts itself.
++ 我们还可以指定合约的各个属性，并让 Truffle 自己生成工件 （artifacts）。
 
 ```javascript
 module.exports = {
@@ -317,7 +348,29 @@ module.exports = {
   }
 }
 ```
-Specify `properties` and/or `fileProperties`, and Truffle will look for those values when building the artifacts.
+
+指定 `properties` 和/或 `fileProperties` ，Truffle 将在构建工件时查找这些值。
+
+要覆盖所有指定路径和运行命令的工作目录，请使用 `workingDirectory` 选项。
+例如，以下将运行 `./proj/compile-contracts` 并读取  `./proj/output/contract.abi` ：
+
+
+```javascript
+module.exports = {
+  compilers: {
+    external: {
+      command: "./compile-contracts",
+      workingDirectory: "./proj",
+      targets: [{
+        fileProperties: {
+          abi: "./output/contract.abi",
+          bytecode: "./output/contract.bytecode",
+        }
+      }]
+    }
+  }
+}
+```
 
 
 ```eval_rst
@@ -326,66 +379,63 @@ Specify `properties` and/or `fileProperties`, and Truffle will look for those va
 
 ## 插件 plugins
 
-<p class="alert alert-warning">
-**Note**: This feature is new and still in a barebones state. Please let us
-know how we can improve it!
-</p>
+```note::
+   仍处于"准系统状态"的新功能，同时还可向 Truffle 反馈改进意见！
+```
 
-Provides Truffle with a list of installed third-party extensions installed as
-NPM package dependencies.
 
-Truffle plugin support is currently limited to plugins that define custom
-workflow commands. For more information, see [Third-Party Plugin Commands](../getting-started/writing-external-scripts#third-party-plugin-commands).
+为Truffle提供 通过 NPM 安装（通过 dependencies 安装的）的第三方扩展的列表。
 
+Truffle 插件目前仅支持自定义工作流命令的插件。 有关更多信息，请参阅[第三方插件命令-编写脚本](https://learnblockchain.cn/docs/truffle/getting-started/writing-external-scripts.html)。
 
 
 ## EthPM 配置
 
-This configuration applies to the optional `ethpm.json` file that exists alongside your `truffle.js` configuration file.
+此配置是可选的，配置文件为 `ethpm.json` 和 `truffle.js` 在同一目录下。
 
-### package_name
+### 包名：package_name
 
-Name of the package you're publishing. Your package name must be unique to the EthPM registry.
+我们要发布的包的名称，包名称不能和已有 EthPM 注册表的包名相同（确保 unique）。
 
-Example:
+举例:
 ```javascript
 package_name: "adder"
 ```
 
-### version
+### 版本：version
 
-Version of this package, using the [semver](http://semver.org/) specification.
+该软件包的版本，使用[semver]（http://semver.org/）规范。
 
-Example:
+举例:
 ```javascript
 version: "0.0.3"
 ```
 
-### description
+### 描述：description
 
-A text description of your package for human readers.
+人类可读的文字说明。
 
-Example:
+
+举例:
 ```javascript
 description: "Simple contract to add two numbers"
 ```
 
-### authors
+### 作者 authors
+作者列表，可以有任何格式，但我们建议采用以下格式。
 
-An array of authors. Can have any format, but we recommend the format below.
-
-Example:
+举例:
 ```javascript
 authors: [
   "Tim Coulter <tim.coulter@consensys.net>"
 ]
 ```
 
-### keywords
+### 关键字 keywords
 
-An array of keywords that tag this package with helpful categories.
+关键字列表，使用有用的类别标记此包。
 
-Example:
+举例:
 ```javascript
 keywords: [
   "ethereum",
@@ -393,11 +443,11 @@ keywords: [
 ],
 ```
 
-### dependencies
+### 依赖 dependencies
 
-A list of EthPM packages your package depends on, using [semver](http://semver.org/) version ranges, like npm.
+版本范围使用[semver](http://semver.org/)规范，列出软件包所依赖的EthPM软件包。
 
-Example:
+举例:
 ```javascript
 dependencies: {
   "owned": "^0.0.1",
@@ -406,11 +456,12 @@ dependencies: {
 ```
 
 
-### license
+### 许可协议 license
 
-License to use for this package. Strictly informative.
+用于此程序包的许可证，严格提供。
 
-Example:
+
+举例:
 ```javascript
 license: "MIT",
 ```

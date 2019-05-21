@@ -77,7 +77,7 @@ html_theme_options = {
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
-html_last_updated_fmt = '%Y/%b/%d'
+html_last_updated_fmt = '2019/05/21'
 
 html_show_sourcelink = False
 
