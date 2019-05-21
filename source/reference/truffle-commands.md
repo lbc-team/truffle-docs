@@ -1,204 +1,205 @@
 # Truffle 命令手册
 
-This section will describe every command available in the Truffle application.
-
+本节将介绍Truffle应用程序中可用的每个命令。
 
 ## 使用方法
 
-All commands are in the following form:
+所有命令均采用以下形式：
 
 ```shell
 truffle <command> [options]
 ```
 
+传递没有参数相当于 `truffle help` ，将显示所有命令然后退出。
 Passing no arguments is equivalent to `truffle help`, which will display a list of all commands and then exit.
 
 
 ## 命令列表
 
 
-### build
+### 构建 build
 
-Execute build pipeline (if configuration present) （弃用）.
+已弃用。
 
 ```shell
 truffle build
 ```
 
 
-
-
 ### 编译合约 compile
 
-Compile contract source files.
+编译合约源文件。
 
 ```shell
 truffle compile [--list <filter>] [--all] [--network <name>] [--quiet]
 ```
 
-This will only compile contracts that have changed since the last compile, unless otherwise specified.
+除非另有说明，否则将仅编译自上次编译以来已更改的合约。
 
-Options:
 
-* `--list <filter>`: List all recent stable releases from solc-bin. If filter is specified then it will display only that type of release or docker tags.  The filter parameter must be one of the following: prereleases, releases, latestRelease or docker.
-* `--all`: Compile all contracts instead of only the contracts changed since last compile.
-* `--network <name>`: Specify the network to use, saving artifacts specific to that network. Network name must exist in the configuration.
-* `--quiet`: Suppress all compilation output.
+选项:
+
+* `--list <filter>`: 从solc-bin列出所有最近的稳定版本。如果指定了filter，则它将仅显示匹配的版本。 filter参数可以为：prereleases, releases, latestRelease or docker。
+* `--all`: 编译所有合约，而不是仅编译自上次编译后更改的合约。
+* `--network <name>`: 指定要使用的网络，保存特定于该网络的工件(artifacts)。网络名称必须存在于[配置文件](https://learnblockchain.cn/docs/truffle/reference/configuration.html)中。
+* `--quiet`: 取消所有编译输出。
 
 ### config
 
-Display whether analytics are enabled or disabled and prompt whether to toggle the setting.
+显示是启用还是禁用分析，并提示是否切换设置。
 
 ```shell
 truffle config [--enable-analytics|--disable-analytics]
 ```
 
-Options:
+选项:
 
-* `--enable-analytics|--disable-analytics`: Enable or disable analytics.
+* `--enable-analytics|--disable-analytics`: 启用或禁用分析。
 
 
-### console
+### 启动控制台 console
 
-Run a console with contract abstractions and commands available.
+运行具有合约抽象和命令的控制台。
 
 ```shell
 truffle console [--network <name>] [--verbose-rpc]
 ```
 
-Spawns an interface to interact with contracts via the command line. Additionally, many Truffle commands are available within the console (without the `truffle` prefix).
+通过命令行与合约进行交互的接口。此外，许多 Truffle 命令在控制台中使用（不需要 `truffle` 前缀）
 
-Requires an external Ethereum client, such as [Ganache](https://truffleframework.com/ganache/using) or geth. For a console that creates a development and test environment, use `truffle develop`.
+需要外部以太坊客户端，例如[Ganache](https://truffleframework.com/ganache/using) 或 geth ，则使用 `truffle develop` 创建开发和测试环境的控制台。
 
-See the [使用控制台](https://learnblockchain.cn/docs/truffle/getting-started/using-truffle-develop-and-the-console.html) section for more details.
+有关详细信息，请参阅[使用控制台](https://learnblockchain.cn/docs/truffle/getting-started/using-truffle-develop-and-the-console.html) 。
 
-Options:
+选项:
 
-* `--network <name>`: Specify the network to use. Network name must exist in the configuration.
-* `--verbose-rpc`: Log communication between Truffle and the Ethereum client.
+* `--network <name>`: ：指定要使用的网络。网络名称必须存在于配置中。
+* `--verbose-rpc`: 记录Truffle和以太坊客户端之间的通信log。
 
 
-### create
+### 创建 create
 
-Helper to create new contracts, migrations and tests.
+用于创建新的合约，迁移和测试。
 
 ```shell
 truffle create <artifact_type> <ArtifactName>
 ```
 
-Options:
+选项:
 
-* `<artifact_type>`: Create a new artifact where artifact_type is one of the following: contract, migration or test. The new artifact is created along with one of the following files: `contracts/ArtifactName.sol`, `migrations/####_artifact_name.js` or `tests/artifact_name.js`. (required)
-* `<ArtifactName>`: Name of new artifact. (required)
+* `<artifact_type>`: (必须项) 创建一个新合约，迁移和测试， artifact_type 可以是：contract, migration 或 test. 创建的文件通常像这样: `contracts/ArtifactName.sol`, `migrations/####_artifact_name.js` or `tests/artifact_name.js`.
+* `<ArtifactName>`: (必须项) 新工件（合约，迁移和测试）的名称。 
 
-Camel case names of artifacts will be converted to underscore-separated file names for the migrations and tests. Number prefixes for migrations are automatically generated.
+Camel 的命名将转换为下划线分隔的文件名，以用于迁移和测试。将自动生成迁移的编号前缀。
 
 
-### debug
+### 调试 debug
 
-Interactively debug any transaction on the blockchain.
+交互式调试区块链上的任何事务。
 
 ```shell
 truffle debug <transaction_hash>
 ```
 
-Will start an interactive debugging session on a particular transaction. Allows you to step through each action and replay. See the [调试合约](https://learnblockchain.cn/docs/truffle/getting-started/debugging-your-contracts.html) section for more details.
+将在特定事务上启动交互式调试会话。允许您逐步执行每个操作并重播（replay）。有关详细信息，请参阅[调试合约](https://learnblockchain.cn/docs/truffle/getting-started/debugging-your-contracts.html) 。
 
-<p class="alert alert-warning">
-**Alert**: This command is considered experimental.
-</p>
+ ```note::
+   警告：调试命令依然是实验性的。
+ ```
 
+选项：
 
-Option:
-
-* `<transaction_hash>`: Transaction ID to use for debugging. (required)
-
-
-### deploy
-
-Alias for `migrate`. See [migrate](#migrate) for details.
+* `<transaction_hash>`: 用于调试的事务ID。 (必须项)
 
 
-### develop
+### 部署 deploy
 
-Open a console with a development blockchain
+ `migrate` 的别名. 参考 [migrate](#migrate) 。
+
+
+### 控制台 develop
+
+使用框架集成的 develop 链打开控制台
 
 ```shell
 truffle develop
 ```
 
-Spawns a local development blockchain, and allows you to interact with contracts via the command line. Additionally, many Truffle commands are available within the console (without the `truffle` prefix).
+通过命令行与框架集成的 develop 链上合约进行交互的接口。此外，许多 Truffle 命令在控制台中使用（不需要 `truffle` 前缀）
 
-If you want an interactive console but want to use an existing blockchain, use `truffle console`.
+如果想要现有的区块链上合约进行交互，请使用 `truffle console` 。
 
-See the [Using the console](https://learnblockchain.cn/docs/truffle/getting-started/using-truffle-develop-and-the-console.html) section for more details.
+有关详细信息，请参阅[使用控制台](https://learnblockchain.cn/docs/truffle/getting-started/using-truffle-develop-and-the-console.html) 。
 
 
 ### exec
 
-Execute a JS module within the Truffle environment.
+在Truffle环境中执行JS模块。
 
 ```shell
 truffle exec <script.js> [--network <name>] [--compile]
 ```
 
-This will include `web3`, set the default provider based on the network specified (if any), and include your contracts as global objects while executing the script. Your script must export a function that Truffle can run.
+会引入 `web3` ，根据指定的网络（如果有）设置默认提供者（provider），并在执行脚本时将引入我们的合约作为全局对象。提供的脚本必须导出Truffle可以运行的函数。
 
-See the [Writing external scripts](https://learnblockchain.cn/docs/truffle/getting-started/writing-external-scripts.html) section for more details.
+有关详细信息，请参阅[编写外部脚本](https://learnblockchain.cn/docs/truffle/getting-started/writing-external-scripts.html) 。
 
-Options:
+选项：
 
-* `<script.js>`: JavaScript file to be executed. Can include path information if the script does not exist in the current directory. (required)
-* `--network <name>`: Specify the network to use, using artifacts specific to that network. Network name must exist in the configuration.
-* `--compile`: Compile contracts before executing the script.
+* `<script.js>`: 要执行的JavaScript文件。如果当前目录中不存在脚本，则可以包含路径信息。 （必须）
+* `--network <name>`: 指定要使用的网络。网络名称必须存在于配置中。
+* `--compile`: 在执行脚本之前编译合约。
 
 
-### help
+### 帮助 help
 
-Display a list of all commands or information about a specific command.
+显示所有命令的列表或特定命令的信息。
 
 ```shell
 truffle help [<command>]
 ```
 
-Option:
+选项：
 
-* `<command>`: Display usage information about the specified command.
+* `<command>`: 指定命令，显示指定命令的使用信息。
 
 
-### init
+### 初始化工程 init
 
-Initialize new and empty Ethereum project
+初始化新的（空的）以太坊项目
 
 ```shell
 truffle init [--force]
 ```
 
-Creates a new and empty Truffle project within the current working directory.
+在当前工作目录中创建一个新的空Truffle项目。
 
-<p class="alert alert-warning">
-**Alert**: Older versions of Truffle used `truffle init bare` to create an empty project. This usage has been deprecated. Those looking for the MetaCoin example that used to be available through `truffle init` should use `truffle unbox MetaCoin` instead.
-</p>
-
-Option:
-
-* `--force`: Initialize project regardless of the current working directory's state. Be careful, this could overwrite existing files that have name conflicts.
+ ```note::
+   **警告**: 较旧版本的 Truffle 使用 `truffle init bare` 来创建一个空项目。此用法已被弃用。
+   基于某一个实例来创建应该使用如 `truffle unbox MetaCoin` 。
+ ```
 
 
-### install
 
-Install a package from the Ethereum Package Registry.
+选项：
+
+* `--force`: 无论当前工作目录的状态如何，都要初始化项目。请注意，这可能会覆盖名称冲突的现有文件。
+
+
+### 安装 install
+
+从以太坊包注册表（Ethereum Package Registry）安装包。
 
 ```shell
 truffle install <package_name>[@<version>]
 ```
 
-Options:
+选项：
 
-* `<package_name>`: Name of the package as listed in the Ethereum Package Registry. (required)
-* `@<version>`: When specified, will install a specific version of the package, otherwise will install the latest version.
+* `<package_name>`: 以太坊包注册表中列出的包的名称。 （必须）
+* `@<version>`: 指定时，会安装特定版本的软件包，否则会安装最新版本。
 
-See the [Package Management with EthPM](https://learnblockchain.cn/docs/truffle/getting-started/package-management-via-ethpm.html) section for more details.
+有关详细信息，请参阅[使用EthPM进行包管理](https://learnblockchain.cn/docs/truffle/getting-started/package-management-via-ethpm.html) 。
 
 ```eval_rst
 .. _migrate:
@@ -206,146 +207,146 @@ See the [Package Management with EthPM](https://learnblockchain.cn/docs/truffle/
 
 ### migrate
 
-Run migrations to deploy contracts.
+运行迁移文件以部署合约。
 
 ```shell
 truffle migrate [--reset] [--f <number>] [--to <number>] [--network <name>] [--compile-all] [--verbose-rpc] [--dry-run] [--interactive]
 ```
 
-Unless specified, this will run from the last completed migration. See the [（迁移）合约部署](https://learnblockchain.cn/docs/truffle/getting-started/running-migrations.html) section for more details.
+除非指定，否则将从上次完成的迁移开始。有关详细信息，请参阅[（迁移）合约部署](https://learnblockchain.cn/docs/truffle/getting-started/running-migrations.html) 。
 
-Options:
+选项：
 
-* `--reset`: Run all migrations from the beginning, instead of running from the last completed migration.
-* `--f <number>`: Run contracts from a specific migration. The number refers to the prefix of the migration file.
-* `--to <number>`: Run contracts to a specific migration. The number refers to the prefix of the migration file.
-* `--network <name>`: Specify the network to use, saving artifacts specific to that network. Network name must exist in the configuration.
-* `--compile-all`: Compile all contracts instead of intelligently choosing which contracts need to be compiled.
-* `--verbose-rpc`: Log communication between Truffle and the Ethereum client.
-* `--dry-run`: Fork the network specified and only perform a test migration.
-* `--interactive`: Prompt to confirm that the user wants to proceed after the dry run.
+* `--reset`: 从头开始运行所有迁移，而不是从上次完成的迁移中运行。
+* `--f <number>`: 从特定的迁移中运行合约。该数字指的是迁移文件的前缀。
+* `--to <number>`: 运行合约到特定的迁移。该数字指的是迁移文件的前缀。
+* `--network <name>`: 指定要使用的网络，网络名称必须存在于配置中。
+* `--compile-all`: 编译所有合约，而不是智能地选择需要编译的合约。
+* `--verbose-rpc`: 记录Truffle和以太坊客户端之间的通信日志。
+* `--dry-run`: 分叉（fork - 复制）指定的网络并仅执行测试迁移。
+* `--interactive`: 在 dry run 之后，提示确认用户是否要继续。
 
 
 ```eval_rst
 .. _networks:
 ```
 
-### networks
+### 网络 networks
 
-Show addresses for deployed contracts on each network.
+显示每个网络上已部署合约的地址。
 
 ```shell
 truffle networks [--clean]
 ```
 
-Use this command before publishing your package to see if there are any extraneous network artifacts you don't want published. With no options specified, this package will simply output the current artifact state.
+在发布包之前使用此命令，以查看是否存在不希望发布的任何无关的网络的[工件（artifacts）](https://learnblockchain.cn/docs/truffle/getting-started/compiling-contracts.html#artifacts)。如果未指定选项，只输出当前的工件状态。
 
-Option:
+选项：
 
-* `--clean`: Remove all network artifacts that aren't associated with a named network.
+* `--clean`: 删除所有与命名网络(named network , 是指在配置文件中指明的网络)无关的网络工件。
 
 
-### opcode
+### 操作码 opcode
 
-Print the compiled opcodes for a given contract.
+打印给定合约的已编译操作码。
 
 ```shell
 truffle opcode <contract_name>
 ```
 
-Option:
+选项：
 
-* `<contract_name>`: Name of the contract to print opcodes for. Must be a contract name, not a file name. (required)
+* `<contract_name>`: 要打印操作码的合约的名称。必须是合约名称，而不是文件名。（必须）
 
 
-### publish
+### 发布 publish
 
-Publish a package to the Ethereum Package Registry.
+将包发布到以太坊包注册表（Ethereum Package Registry）。
 
 ```shell
 truffle publish
 ```
 
-All parameters are pulled from your project's configuration file. Takes no arguments. See the [Package Management with EthPM](https://learnblockchain.cn/docs/truffle/getting-started/package-management-via-ethpm.html) section for more details.
+所有参数都从项目的配置文件中提取。没有参数，有关详细信息，请参阅[使用EthPM进行包管理](https://learnblockchain.cn/docs/truffle/getting-started/package-management-via-ethpm.html) 。
 
-### run
+### 运行 run
 
-<p class="alert alert-warning">
-**Note**: This feature is new and still in a barebones state. Please let us
-know how we can improve it!
-</p>
+```note::
+   仍处于"准系统状态"的新功能，可向 Truffle 反馈改进意见！
+```
 
-Run a third-party plugin command
+运行第三方插件命令
 
 ```shell
 truffle run <command>
 ```
 
-Option:
+选项：
 
-* `<command>`: Name of a command defined by an installed plugin. (required)
+* `<command>`: 由已安装的插件定义的命令的名称。（必须）
 
-Install plugins as NPM package dependencies and [configure Truffle](https://learnblockchain.cn/docs/truffle/reference/configuration.html#plugins)
-to recognize the plugin. For more information, see [Third-Party Plugin Commands](../getting-started/writing-external-scripts#third-party-plugin-commands).
+安装插件作为NPM包依赖项存在，参考[Truffle 配置](https://learnblockchain.cn/docs/truffle/reference/configuration.html#plugins) 了解插件
+有关更多信息，请参阅[第三方插件命令](https://learnblockchain.cn/docs/truffle/getting-started/writing-external-scripts.html#third-party-plugin-commands).
 
 
-### test
+### 测试 test
 
-Run JavaScript and Solidity tests.
+运行JavaScript和Solidity测试用例。
 
 ```shell
 truffle test [<test_file>] [--compile-all] [--network <name>] [--verbose-rpc] [--show-events]
 ```
 
-Runs some or all tests within the `test/` directory as specified. See the section on [Testing your contracts](https://learnblockchain.cn/docs/truffle/testing/testing-your-contracts.html) for more information.
+运行 `test/` 目录中的全部测试用例，或指定用例文件。有关详细信息，请参阅 [测试合约](https://learnblockchain.cn/docs/truffle/testing/testing-your-contracts.html) 。
 
-Options:
+选项：
 
-* `<test_file>`: Name of the test file to be run. Can include path information if the file does not exist in the current directory.
-* `--compile-all`: Compile all contracts instead of intelligently choosing which contracts need to be compiled.
-* `--network <name>`: Specify the network to use, using artifacts specific to that network. Network name must exist in the configuration.
-* `--verbose-rpc`: Log communication between Truffle and the Ethereum client.
-* `--show-events`: Log all contract events.
+* `<test_file>`: 要运行的测试文件的名称。如果当前目录中不存在该文件，则可以包含路径信息。
+* `--compile-all`: 编译所有合约，而不是智能地选择需要编译的合约。
+* `--network <name>`: 指定要使用的网络，网络名称必须存在于配置中。
+* `--verbose-rpc`: 记录Truffle和以太坊客户端之间的通信日志。
+* `--show-events`: 记录所有合约的事件。
 
 
-### unbox
+### 解包 unbox
 
-Download a Truffle Box, a pre-built Truffle project.
+下载Truffle Box ， 它是一个预制（pre-built）的 Truffle 工程。
 
 ```shell
 truffle unbox <box_name>
 ```
 
-Downloads a [Truffle Box](https://truffleframework.com/boxes) to the current working directory. See the [list of available boxes](https://truffleframework.com/boxes).
+下载 [Truffle Box](https://truffleframework.com/boxes) 到当前工作目录。请参阅[可用boxes列表](https://truffleframework.com/boxes).
 
-You can also design and create your own boxes!  See the section on [Truffle boxes](https://learnblockchain.cn/docs/truffle/advanced/creating-a-truffle-box.html) for more information.
+还可以设计和创建自己的boxes! 有关详细信息，请参阅[Truffle boxes](https://learnblockchain.cn/docs/truffle/advanced/creating-a-truffle-box.html) 。
 
-Options:
+选项：
 
-* `<box_name>`: Name of the Truffle Box. (required)
-* `--force`: Unbox project in the current directory regardless of its state. Be careful, this will potentially overwrite files that exist in the directory.
+* `<box_name>`: Truffle Box 的名称(必须 required)
+* `--force`: 强制在当前目录中的解包项目，无论其状态如何。请注意，这可能会覆盖目录中存在的文件。
 
 
-### version
 
-Show version number and exit.
+### 查看版本 version
+
+显示版本号并退出。
 
 ```shell
 truffle version
 ```
 
-### watch
+### 监视变化 watch
 
-Watch filesystem for changes and rebuild the project automatically.
+监视文件系统以进行更改并自动重新构建（rebuild） 项目。
 
 ```shell
 truffle watch
 ```
 
-This command will initiate a watch for changes to contracts, application, and configuration files. When there's a change, it will rebuild the app as necessary.
+此命令将启动对合约，应用程序和配置文件更改的监视。当有更改时，它将根据需要重新构建应用程序。
 
-<p class="alert alert-warning">
-**Alert**: This command is deprecated. Please use external tools to watch for filesystem changes and rerun tests.
-</p>
+```note::
+   警告：不推荐使用此命令。请使用外部工具来监视文件系统更改并重新运行测试。
+```
 
 

@@ -1,4 +1,4 @@
-# 配置文件
+# Truffle 配置
 
 ## 配置文件位置
 
@@ -384,7 +384,7 @@ module.exports = {
 ```
 
 
-为Truffle提供 通过 NPM 安装（通过 dependencies 安装的）的第三方扩展的列表。
+为Truffle提供通过 NPM 安装（通过 dependencies 安装的）的第三方扩展的列表。
 
 Truffle 插件目前仅支持自定义工作流命令的插件。 有关更多信息，请参阅[第三方插件命令-编写脚本](https://learnblockchain.cn/docs/truffle/getting-started/writing-external-scripts.html)。
 
