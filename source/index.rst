@@ -1,4 +1,4 @@
-翻译说明及概述
+Truffle 翻译说明及概述
 ================================
 
 本文档是基于 `Truffle 官方最新文档 <https://truffleframework.com/docs>`_ 由 `深入浅出区块链  <https://learnblockchain.cn/>`_ 社区成员整理、翻译及校队，我们虽力求准确，但如您发现纰漏，欢迎到 `GitHub 提Issues  <https://github.com/lbc-team/truffle-docs>`_ 指正。

@@ -4,6 +4,16 @@ truffle 中文文档，是 [深入浅出区块链社区](https://learnblockchain
 
 文档托管在：https://learnblockchain.cn/docs/truffle/
 
+## 安装
+
+```
+sudo pip install -U Sphinx
+pip install sphinx_rtd_theme
+pip install --upgrade recommonmark
+```
+
+
+
 ## 贡献
 
 感谢 [深入浅出区块链技术社区](http://learnblockchain.cn) ， [HiBlock区块链社区](http://hiblock.net/) 社区成员所做的贡献。
