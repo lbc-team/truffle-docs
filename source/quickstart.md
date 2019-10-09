@@ -145,7 +145,7 @@ Truffle 大多数命令都是在 Truffle 项目目录下运行的。 所以第�
 
 为了部署我们的合约，我们需要连接到区块链网络。Truffle 提供了一个内置的个人模拟区块链，它可以帮助我们用来测试。注意，这个区块链是内地在我们本地的系统里面，他不和以太坊的组网进行连接。
 
-我们可以使用[Truffle Develop](getting-started/using-truffle-develop-and-the-console#truffle-develop)来创建区块链，并与之交互。
+我们可以使用[Truffle Develop](getting-started/using-truffle-develop-and-the-console.html#develop)来创建区块链，并与之交互。
 
 
 1. 运行 Truffle Develop:
