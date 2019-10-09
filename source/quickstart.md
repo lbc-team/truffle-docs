@@ -3,7 +3,7 @@
 本文主要入门介绍如何创建 Truffle 项目以及将智能合约部署到区块链。
 
  ```note::
-  在开始之前，最好对以太坊有基础的了解，推荐阅读 `以太坊是什么 - 以太坊开发入门指南 <https://learnblockchain.cn/2017/11/20/whatiseth/>`_ 
+  在开始之前，最好对以太坊有基础的了解，推荐阅读 `以太坊是什么 - 以太坊开发入门指南 <https://learnblockchain.cn/2017/11/20/whatiseth/>`_
   或阅读 `以太坊概述（英文） <https://truffleframework.com/tutorials/ethereum-overview>`_ 。
  ```
 
@@ -39,7 +39,7 @@ Truffle 大多数命令都是在 Truffle 项目目录下运行的。 所以第�
  在操作完成之后，就有这样的一个项目结构：
 
 * `contracts/`:  [Solidity合约目录](getting-started/interacting-with-your-contracts.md)
-* `migrations/`: [部署脚本文件](getting-started/running-migrations#migration-files)目录
+* `migrations/`: [部署脚本文件](getting-started/running-migrations.html#id2)目录
 * `test/`:    测试脚本目录，参考 [如何测试应用？](testing/testing-your-contracts)
 * `truffle.js`: Truffle [配置文件](reference/configuration)
 
@@ -186,7 +186,7 @@ Truffle 大多数命令都是在 Truffle 项目目录下运行的。 所以第�
    Mnemonic: candy maple cake sugar pudding cream honey tiny smooth crumble sweet treat
 
    ⚠️  Important ⚠️  : This mnemonic was created for you by Truffle. It is not secure.
-   Ensure you do not use it on production blockchains, or else you risk losing funds.   
+   Ensure you do not use it on production blockchains, or else you risk losing funds.
 
    truffle(development)>
    ```
@@ -221,7 +221,7 @@ Truffle 大多数命令都是在 Truffle 项目目录下运行的。 所以第�
       > gas used:            277462
       > gas price:           20 gwei
       > value sent:          0 ETH
-      > total cost:          0.00554924 ETH   
+      > total cost:          0.00554924 ETH
 
       > Saving migration to chain.
       > Saving artifacts
@@ -345,7 +345,7 @@ Truffle 大多数命令都是在 Truffle 项目目录下运行的。 所以第�
       > gas used:            277462
       > gas price:           20 gwei
       > value sent:          0 ETH
-      > total cost:          0.00554924 ETH   
+      > total cost:          0.00554924 ETH
 
       > Saving migration to chain.
       > Saving artifacts
@@ -401,7 +401,7 @@ Truffle 大多数命令都是在 Truffle 项目目录下运行的。 所以第�
  ```
 
 1. 在 Ganache 里，点击 "Transactions" 可以看到交易详情。
-   
+
 1. 为了和合约进行交互，我们可以使用 Truffle 的控制台：`truffle console`， Truffle console 和 Truffle Develop 类似，仅仅是他们连接的链不一样而已，这里是连接 Ganache 。
 
    ```shell
