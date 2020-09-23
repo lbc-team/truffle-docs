@@ -1,14 +1,18 @@
 # 用 Solidity 写测试用例
 
-Solidity test contracts live alongside Javascript tests as `.sol` files. When `truffle test` is run, they will be included as a separate test suite per test contract. These contracts maintain all the benefits of the Javascript tests: namely a [clean-room environment](/docs/getting_started/testing#clean-room-environment) per test suite, direct access to your deployed contracts and the ability to import any contract dependency. In addition to these features, Truffle's Solidity testing framework was built with the following issues in mind:
+Solidity测试“.sol”合约的时候类似Javascript的测试。当执行“truffle test”的时候，对于每一个测试合约，都会包含一个单独的测试套件。这些合约保持了所有Javascript测试的优点：比如对每一个测试套件的净室环境，直接进入你部署的合约和导入任意合约依赖的能力。除了这些特性，Truffle的Solidity测试框架还基于以下想法构建：
 
-* Solidity tests shouldn't extend from any contract (like a `Test` contract). This makes your tests as minimal as possible and gives you complete control over the contracts you write.
-* Solidity tests shouldn't be beholden to any assertion library. Truffle provides a default assertion library for you, but you can change this library at any time to fit your needs.
-* You should be able to run your Solidity tests against any Ethereum client.
 
-## Example
+* Solidity测试不会扩展任意合约（比如“Test”合约）。这意味着你的测试可以尽可能地小，并且对于你写的合约具有完全的控制权。
 
-Let's take a look at an example Solidity test before diving too deeply. Here's the example Solidity test provided for you by `truffle unbox metacoin`:
+* Solidity测试不依赖于任何断言库。Truffle提供一个默认的断言库，但是你能够随时调整它以满足你的需求。
+
+* 你能够再任何以太坊客户端运行你的Solidity测试。
+
+## 例子
+
+让我们在深入之前先来看一个例子。这是一个通过`truffle unbox metacoin`演示Solidity测试功能的例子：
+
 
 ```javascript
 import "truffle/Assert.sol";
@@ -34,7 +38,7 @@ contract TestMetacoin {
 }
 ```
 
-This produces the following output:
+这生成了以下输出：
 
 ```
 $ truffle test
@@ -51,11 +55,11 @@ Compiling ../test/TestMetacoin.sol...
   2 passing (3s)
 ```
 
-## Test structure
+## 测试结构
 
-To better understand whats happening, let's discuss things in more detail.
+为了更好地理解发生了什么，让我们讨论一下细节。
 
-### Assertions
+### 断言
 
 Your assertion functions like `Assert.equal()` are provided to you by the `truffle/Assert.sol` library. This is the default assertion library, however you can include your own assertion library so long as the library loosely integrates with Truffle's test runner by triggering the correct assertion events. You can find all available assertion functions in [Assert.sol](https://github.com/trufflesuite/truffle/blob/develop/packages/truffle-core/lib/testing/Assert.sol).
 
