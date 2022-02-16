@@ -191,7 +191,7 @@ Truffle 大多数命令都是在 Truffle 项目目录下运行的。 所以第�
    truffle(development)>
    ```
 
-   这也显示了10个账号（他们对应的私钥），这些账号可以用来和区块链进行交互。
+   这也显示了10个账号（和他们对应的私钥），这些账号可以用来和区块链进行交互。
 
 1. 在 truffle(develop)> 提示符（因为提供了一个交互式控制台）下， Truffle 的命令可以不带前缀 `truffle` 执行。比如，可以直接输入`compile` 来执行`truffle compile`，以及直接输入 `migrate` 来部署编译的智能合约到区块链（相当于`truffle migrate`）：
 
