@@ -143,7 +143,7 @@ Truffle 大多数命令都是在 Truffle 项目目录下运行的。 所以第�
   如果使用 `Ganache <https://truffleframework.com/ganache>`_ , 可以直接跳到下一部分。
  ```
 
-为了部署我们的合约，我们需要连接到区块链网络。Truffle 提供了一个内置的个人模拟区块链，它可以帮助我们用来测试。注意，这个区块链是部署在我们本地的系统里面，它不和以太坊的组网进行连接。
+为了部署我们的合约，我们需要连接到区块链网络。Truffle 提供了一个内置的个人模拟区块链，它可以帮助我们用来测试。注意，这个区块链是部署在我们本地的系统里面，他不和以太坊的组网进行连接。
 
 我们可以使用[Truffle Develop](getting-started/using-truffle-develop-and-the-console.html#develop)来创建区块链，并与之交互。
 
